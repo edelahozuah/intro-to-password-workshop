@@ -11,7 +11,7 @@
   "trackingParam": "id",
   "jsRules": "",
   "debug": true,
-  "log": "/var/log/modlishka.log",
+  "log": "modlishka.log",
   "plugins": "all",
   "cert": "",
   "certKey": "",

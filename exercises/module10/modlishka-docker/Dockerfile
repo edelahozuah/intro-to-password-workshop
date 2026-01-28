@@ -7,7 +7,7 @@ RUN CGO_ENABLED=0 GOOS=linux go build -o modlishka main.go
 
 FROM alpine:latest
 WORKDIR /app
-RUN apk add --no-cache ca-certificates
+RUN apk add --no-cache ca-certificates openssl
 COPY --from=builder /app/modlishka /app/modlishka
 # Copiamos templates por si acaso, aunque proxy mode no los usa mucho
 COPY --from=builder /app/templates /app/templates
