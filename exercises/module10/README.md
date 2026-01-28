@@ -11,7 +11,7 @@ El entorno incluye dos nuevos contenedores:
 
 1.  **Víctima Simulada (`target-app`)**: Una aplicación bancaria falsa pero funcional.
     *   URL real (inaccesible directamente): `http://target-app`
-    *   Flujo: Login -> 2FA (Token: 123456) -> Dashboard.
+    *   Flujo: Login -> 2FA (QR/TOTP Real) -> Dashboard.
 2.  **Atacante (`modlishka`)**: Reverse Proxy malicioso.
     *   Dominio Phishing: `https://phishing.local`
     *   Intermediario: Cliente <-> Modlishka <-> Víctima.
@@ -49,7 +49,11 @@ docker-compose up -d --build
 5.  Introduce:
     *   User: `admin`
     *   Pass: `password123`
-6.  Te pedirá 2FA. Introduce `123456`.
+6.  **2FA Real** 📱:
+    *   Aparecerá un **código QR** en pantalla.
+    *   Abre tu app de autenticación (Google/Microsoft Authenticator) en tu móvil.
+    *   Escanea el QR para añadir la cuenta "SecureBank Workshop".
+    *   Introduce el código de 6 dígitos que aparece en tu móvil.
 7.  Accederás al Dashboard.
 
 ### 4. Ver los Datos Robados 🔓
@@ -63,7 +67,7 @@ docker logs -f workshop_modlishka
 
 Busca líneas que contengan:
 *   `Post data: username=admin...`
-*   `Post data: otp=123456...`
+*   `Post data: otp=XXXXXX` (Tu código del móvil capturado).
 *   **SESSION_ID**: ¡El atacante ha robado tu cookie de sesión! Con esto puede acceder a tu cuenta sin necesitar password ni 2FA.
 
 ### 5. Secuestro de Sesión (Session Hijacking) 🏴‍☠️
