@@ -22,6 +22,7 @@ Un taller completo y reproducible diseñado para estudiantes de nivel iniciació
 7. **Stealers**: Análisis de logs tipo **LaZagne/DonPAPI** con MITRE ATT&CK.
 8. **Detección y Defensa**: Green/Blue Team, análisis de logs y **Conditional Access**.
 9. **Evasión**: Rotación de IPs con **Tor** para evadir Rate Limiting.
+10. **Phishing 2FA**: Bypass de doble factor usando **Modlishka** (Reverse Proxy).
 
 ## 🚀 Inicio Rápido
 
@@ -78,7 +79,8 @@ password-security-workshop/
 │   ├── module6/                # Credential stuffing
 │   ├── module7/                # Stealers y MITRE ATT&CK
 │   ├── module8/                # Detección y defensa (Blue Team)
-│   └── module9/                # Evasión y Rotación de IPs (Tor)
+│   ├── module9/                # Evasión y Rotación de IPs (Tor)
+│   └── module10/               # Phishing 2FA (Modlishka)
 ├── wordlists/                  # Diccionarios de contraseñas
 ├── scripts/                    # Scripts de soporte
 ├── solutions/                  # Soluciones de ejercicios

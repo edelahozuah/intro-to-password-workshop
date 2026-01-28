@@ -94,6 +94,34 @@ services:
     networks:
       - lab-network
 
+  # Módulo 10: Target App (Víctima)
+  target-app:
+    build: ./exercises/module10/target-app
+    container_name: workshop_target_2fa
+    hostname: target-app
+    networks:
+      - lab-network
+    # No exponemos puerto para obligar a pasar por Modlishka (o se puede exponer para debug)
+    expose:
+      - "80"
+
+  # Módulo 10: Modlishka (Atacante)
+  # Requiere mapear '127.0.0.1 phishing.local' en /etc/hosts del host
+  modlishka:
+    image: drk1wi/modlishka:latest
+    container_name: workshop_modlishka
+    hostname: phishing.local
+    ports:
+      - "443:443"
+      - "80:80"
+      - "10000:10000" # Control panel (opcional)
+    volumes:
+      - ./exercises/module10/modlishka-config/config.json:/etc/modlishka/config.json
+    # Command para ejecutar modlishka con la config
+    command: /app/modlishka -config /etc/modlishka/config.json
+    networks:
+      - lab-network
+
 networks:
   lab-network:
     driver: bridge
@@ -101,3 +129,5 @@ networks:
 
 volumes:
   dvwa-data:
+
+

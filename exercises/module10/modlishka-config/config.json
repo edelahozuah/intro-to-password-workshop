@@ -1,0 +1,21 @@
+{
+  "proxyDomain": "phishing.local",
+  "listeningAddress": "0.0.0.0",
+  "proxyAddress": "",
+  "target": "http://target-app",
+  "targetResources": "",
+  "rules": "",
+  "terminateTriggers": "",
+  "terminateUrl": "",
+  "trackingCookie": "ident",
+  "trackingParam": "id",
+  "jsRules": "",
+  "debug": true,
+  "log": "/var/log/modlishka.log",
+  "plugins": "all",
+  "cert": "",
+  "certKey": "",
+  "forceHTTPS": true,
+  "disableSecurity": true,
+  "credits": false
+}
