@@ -1,0 +1,63 @@
+---
+nombre_completo: Carlos García Martínez
+nombre: Carlos
+apellido: García
+apodo: Carlitos
+
+fecha_nacimiento:
+  dia: 15
+  mes: 03
+  año: 1990
+  formato_completo: 15/03/1990
+
+relaciones:
+  pareja:
+    nombre: Laura
+    apodo: Lau
+  hijos: []
+  mascota:
+    nombre: Max
+    tipo: perro
+
+profesional:
+  empresa: TechCorp
+  puesto: Desarrollador Senior
+  antiguedad_años: 5
+
+intereses:
+  deportes:
+    - fútbol
+    - running
+  equipos:
+    - Real Madrid
+    - España
+  hobbies:
+    - gaming
+    - programación
+  lugares_favoritos:
+    - Madrid
+    - Barcelona
+
+redes_sociales:
+  linkedin: carlos-garcia-dev
+  twitter: "@carlitosTech"
+  github: cgarcia1990
+
+# Contraseñas esperadas generadas a partir de este perfil
+# (para verificación del instructor)
+contraseñas_esperadas:
+  - Carlos1990
+  - Garcia15
+  - Laura2024
+  - Max2020
+  - TechCorp123
+  - RealMadrid
+  - Futbol123
+  - CarlosGarcia
+  - cgarcia1990
+  - Madrid2024
+  - MaxLaura
+  - Tech@1990
+  - Carlos15031990
+  - LauraMax
+  - RealMadrid1990

@@ -1,0 +1,10 @@
+password
+welcome
+admin
+secure
+letmein
+master
+access
+login
+root
+sunshine

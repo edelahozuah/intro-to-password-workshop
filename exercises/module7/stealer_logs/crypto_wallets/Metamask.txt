@@ -1,0 +1,26 @@
+==================== METAMASK WALLET ====================
+
+Wallet Type: Metamask Extension
+Browser: Chrome
+Status: FOUND
+
+Wallet Address: 0x742d35Cc6634C0532925a3b844Bc9e7595f0bEb4
+Network: Ethereum Mainnet
+
+Private Key: 0xa8d9f2e1c3b4567890abcdef1234567890abcdef1234567890abcdef12345678
+[!] WARNING: Private key exposed - immediate fund transfer required
+
+Seed Phrase (12 words):
+witch collapse practice feed shame open despair creek road again ice least
+
+Estimated Balance: 0.0245 ETH (~$42.50 USD)
+Token Holdings:
+  - USDT: 125.50
+  - DAI: 50.00
+  - LINK: 3.25
+
+Transaction History:
+  Last TX: 2024-01-20 15:32:11
+  Total Transactions: 47
+
+==================== END METAMASK ====================

@@ -1,0 +1,47 @@
+OS: Windows 10 Pro 21H2
+Hostname: DESKTOP-LAB2024
+Username: carlos.garcia
+Computer Name: TECHCORP-WKS-042
+Domain: TECHCORP.LOCAL
+
+System Information:
+  Processor: Intel Core i7-10700K @ 3.80GHz
+  RAM: 16 GB
+  Graphics: NVIDIA GeForce RTX 2060
+  
+Network Information:
+  Internal IP: 192.168.10.105
+  MAC Address: 00:1A:2B:3C:4D:5E
+  Public IP: 203.0.113.45
+  ISP: Telefonica de España
+  Location: Madrid, Spain
+  Timezone: UTC+1
+
+Security Software:
+  Antivirus: Windows Defender
+  Real-time Protection: DISABLED
+  Firewall: Windows Firewall (Active)
+  Last AV Update: 2024-01-15
+
+Display:
+  Screen Resolution: 1920x1080
+  Monitors: 2
+
+Browser Profiles Found:
+  - Chrome (Default)
+  - Firefox (carlos_work)
+  - Edge (Personal)
+
+Installed Applications:
+  - Microsoft Office 2021
+  - Adobe Acrobat Reader DC
+  - Slack
+  - Discord
+  - Steam
+  - Metamask Extension
+  - Exodus Wallet
+  - FileZilla FTP Client
+  - PuTTY
+  - Visual Studio Code
+
+Data Collection Timestamp: 2024-01-26 06:30:15 UTC

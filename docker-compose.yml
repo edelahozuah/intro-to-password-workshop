@@ -1,0 +1,90 @@
+version: '3.8'
+
+services:
+  # Contenedor de trabajo con herramientas de pentesting
+  attacker:
+    image: kalilinux/kali-rolling
+    container_name: workshop_attacker
+    hostname: attacker
+    volumes:
+      - ./exercises:/exercises
+      - ./wordlists:/wordlists
+      - ./scripts:/scripts
+      - ./solutions:/solutions
+    command: >
+      /bin/bash -c " apt update && apt install -y john hashcat hydra git python3 python3-pip curl wget vim nano tree ffuf jq && git clone https://github.com/Mebus/cupp.git /opt/cupp && git clone https://github.com/LandGrey/pydictor.git /opt/pydictor && git clone https://github.com/pcaro90/palabrario.git /opt/palabrario && git clone --depth 1 https://github.com/danielmiessler/SecLists.git /opt/SecLists && pip3 install requests colorama name-that-hash --break-system-packages && mkdir -p /opt/rules && wget https://raw.githubusercontent.com/NotSoSecure/password_cracking_rules/master/OneRuleToRuleThemAll.rule -O /opt/rules/OneRuleToRuleThemAll.rule && wget https://raw.githubusercontent.com/praetorian-inc/Hob0Rules/master/hob064.rule -O /opt/rules/hob064.rule && ln -sf /opt/SecLists/Passwords /wordlists/seclists && echo 'Entorno listo. Herramientas: FFUF, NTH, Pydictor, SecLists, Rules, Palabrario, JQ' && echo 'Usa: docker-compose exec attacker /bin/bash' && tail -f /dev/null "
+    networks:
+      - lab-network
+    stdin_open: true
+    tty: true
+
+  # Objetivo SSH con credenciales débiles
+  ssh-target:
+    image: linuxserver/openssh-server:latest
+    container_name: workshop_ssh
+    hostname: ssh-target
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=Europe/Madrid
+      - PASSWORD_ACCESS=true
+      - USER_NAME=testuser
+      - USER_PASSWORD=password123
+    volumes:
+      - ./exercises/module5/ssh-data:/config
+    ports:
+      - "2222:2222"
+    networks:
+      - lab-network
+
+  # DVWA para ataques web
+  dvwa:
+    image: vulnerables/web-dvwa:latest
+    container_name: workshop_dvwa
+    hostname: dvwa
+    environment:
+      - MYSQL_HOST=dvwa-db
+      - MYSQL_DATABASE=dvwa
+      - MYSQL_USER=dvwa
+      - MYSQL_PASSWORD=dvwa
+    ports:
+      - "8080:80"
+    depends_on:
+      - dvwa-db
+    networks:
+      - lab-network
+
+  # Base de datos para DVWA
+  dvwa-db:
+    image: mariadb:10.11
+    container_name: workshop_dvwa_db
+    hostname: dvwa-db
+    environment:
+      - MYSQL_ROOT_PASSWORD=rootpass
+      - MYSQL_DATABASE=dvwa
+      - MYSQL_USER=dvwa
+      - MYSQL_PASSWORD=dvwa
+    volumes:
+      - dvwa-data:/var/lib/mysql
+    networks:
+      - lab-network
+
+  # API vulnerable para credential stuffing
+  vulnerable-api:
+    build: ./vulnerable-api
+    container_name: workshop_api
+    hostname: vulnerable-api
+    ports:
+      - "5000:5000"
+    networks:
+      - lab-network
+    environment:
+      - FLASK_ENV=development
+
+networks:
+  lab-network:
+    driver: bridge
+    name: workshop_network
+
+volumes:
+  dvwa-data:

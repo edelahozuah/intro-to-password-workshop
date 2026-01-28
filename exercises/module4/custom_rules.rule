@@ -1,0 +1,56 @@
+# Capitalizar
+c
+
+# Capitalizar + año 2024
+c $2 $0 $2 $4
+
+# Capitalizar + año 2023
+c $2 $0 $2 $3
+
+# Capitalizar + año 2022
+c $2 $0 $2 $2
+
+# Capitalizar + !
+c $!
+
+# Capitalizar + #
+c $#
+
+# Capitalizar + @
+c $@
+
+# Capitalizar + $
+c $$
+
+# Capitalizar + 123
+c $1 $2 $3
+
+# Capitalizar + 2024!
+c $2 $0 $2 $4 $!
+
+# Capitalizar + 2023!
+c $2 $0 $2 $3 $!
+
+# Todo mayúsculas + 123
+u $1 $2 $3
+
+# Todo mayúsculas + !
+u $!
+
+# Leet speak (a->4)
+sa4
+
+# Leet speak (e->3)
+se3
+
+# Leet speak (i->1, o->0)
+si1 so0
+
+# Leet speak completo + 123
+sa4 se3 si1 so0 $1 $2 $3
+
+# Duplicar
+d
+
+# Primera mayúscula + 123!
+c $1 $2 $3 $!

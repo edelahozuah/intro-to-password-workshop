@@ -1,0 +1,30 @@
+==================== EXODUS WALLET ====================
+
+Wallet Type: Exodus Desktop Wallet
+Version: 23.11.17
+Status: FOUND
+
+Installation Path: C:\Users\carlos.garcia\AppData\Roaming\Exodus
+
+Wallet Seed (12 words):
+candy maple cafe error latin cheap asset relief carbon daughter shrimp early
+
+Addresses Found:
+
+Bitcoin (BTC):
+  Address: bc1qxy2kgdygjrsqtzq2n0yrf2493p83kkfjhx0wlh
+  Balance: 0.00125 BTC (~$52.50 USD)
+
+Ethereum (ETH):
+  Address: 0xAb5801a7D398351b8bE11C439e05C5B3259aeC9B
+  Balance: 0.150 ETH (~$260.00 USD)
+
+Litecoin (LTC):
+  Address: LhK4u7Xc1H8YBZZhBPDJKwZ8G7qWvP3xMN
+  Balance: 0.75 LTC (~$52.00 USD)
+
+TOTAL ESTIMATED VALUE: ~$364.50 USD
+
+Last Sync: 2024-01-25 18:45:22
+
+==================== END EXODUS ====================

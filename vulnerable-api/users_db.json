@@ -1,0 +1,17 @@
+{
+  "admin": {
+    "email": "admin@vulnerable-api.local",
+    "password_hash": "5f4dcc3b5aa765d61d8327deb882cf99",
+    "created": "2024-01-01T00:00:00"
+  },
+  "testuser": {
+    "email": "test@example.com",
+    "password_hash": "5f4dcc3b5aa765d61d8327deb882cf99",
+    "created": "2024-01-15T10:30:00"
+  },
+  "john123": {
+    "email": "john@example.com",
+    "password_hash": "e10adc3949ba59abbe56e057f20f883e",
+    "created": "2024-01-10T14:20:00"
+  }
+}

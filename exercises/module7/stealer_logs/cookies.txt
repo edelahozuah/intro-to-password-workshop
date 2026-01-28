@@ -1,0 +1,85 @@
+==================== SESSION COOKIES ====================
+
+[GitHub Session]
+Domain: .github.com
+Name: user_session
+Value: GH1_LoremIpsumDolorSitAmetConsecteturAdipiscingElitSedDoEiusmod
+Path: /
+Expires: 2025-02-26 06:30:00
+Secure: Yes
+HttpOnly: Yes
+SameSite: Lax
+
+[AWS Management Console]
+Domain: .amazonaws.com
+Name: aws-userInfo
+Value: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ
+Path: /
+Expires: 2024-01-27 12:00:00
+Secure: Yes
+HttpOnly: Yes
+
+[TechCorp VPN Portal]
+Domain: .vpn.techcorp.com
+Name: vpn_session_token
+Value: TCVPN_7a8d9e4f2b1c3d5e6f8a9b0c1d2e3f4g5h6i7j8k9l0m1n2o3p4q5r6s7t8u9v0w
+Path: /
+Expires: 2024-01-26 16:00:00
+Secure: Yes
+HttpOnly: No
+
+[Gmail]
+Domain: .google.com
+Name: SID
+Value: 1AfD3yTnQXHGPM8kLmnBoZ
+Path: /
+Expires: 2026-01-26 06:30:00
+Secure: Yes
+HttpOnly: No
+
+[Slack Workspace]
+Domain: techcorp.slack.com
+Name: d
+Value: xoxd-1234567890abcdefghijklmnopqrstuvwxyz
+Path: /
+Expires: 2024-02-26 06:30:00
+Secure: Yes
+HttpOnly: Yes
+
+[Binance Trading]
+Domain: .binance.com
+Name: bn_session
+Value: BIN_ad8f7e6d5c4b3a2918e7d6c5b4a39281
+Path: /
+Expires: 2024-01-27 06:30:00
+Secure: Yes
+HttpOnly: Yes
+
+[Coinbase]
+Domain: .coinbase.com
+Name: __cf_session
+Value: CBX_9f8e7d6c5b4a39281e7d6c5b4a3928
+Path: /
+Expires: 2024-01-28 06:30:00
+Secure: Yes
+HttpOnly: Yes
+
+[Jira]
+Domain: jira.techcorp.com
+Name: JSESSIONID
+Value: JIRASESS_8E7D6C5B4A39281E7D6C5B4A392817F
+Path: /
+Expires: Session
+Secure: No
+HttpOnly: Yes
+
+[Netflix]
+Domain: .netflix.com
+Name: NetflixId
+Value: v%3D2%26ct%3DBQAOAAEBFEF
+Path: /
+Expires: 2025-01-26 06:30:00
+Secure: Yes
+HttpOnly: No
+
+==================== TOTAL: 9 ACTIVE SESSIONS ====================

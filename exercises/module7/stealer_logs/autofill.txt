@@ -1,0 +1,54 @@
+==================== AUTOFILL DATA ====================
+
+[Personal Information]
+Full Name: Carlos García Martínez
+Email: carlos.garcia@techcorp.com
+Email (Personal): carlosgarcia90@outlook.com
+Phone: +34 612 345 678
+Phone (Work): +34 91 123 4567
+Address: Calle Mayor 42, 3ºB
+City: Madrid
+Postal Code: 28013
+Country: Spain
+
+[Payment Methods]
+
+VISA Card:
+  Cardholder: CARLOS GARCIA
+  Number: 4532 **** **** 1234
+  Expiry: 07/2026
+  CVV: *** (not saved)
+
+Mastercard:
+  Cardholder: CARLOS GARCIA MARTINEZ
+  Number: 5412 **** **** 5678
+  Expiry: 11/2025
+  CVV: *** (not saved)
+
+[Work Information]
+Company: TechCorp Solutions SL
+Position: Senior Software Engineer
+Employee ID: EMP042
+Department: Engineering
+Office: Madrid HQ
+
+[Frequently Used Forms]
+
+Username variations:
+  - cgarcia
+  - carlos.garcia
+  - cgarcia-dev
+  - carlos_garcia
+  - carlosgarcia90
+
+Security Questions:
+  Q: Mother's maiden name?
+  A: Rodriguez
+  
+  Q: First pet's name?
+  A: Max
+  
+  Q: City where you were born?
+  A: Madrid
+
+==================== END AUTOFILL DATA ====================

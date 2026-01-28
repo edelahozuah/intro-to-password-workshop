@@ -1,0 +1,75 @@
+[
+    {
+        "timestamp": "2024-01-26T08:00:05Z",
+        "user": "karen.smith@techcorp.com",
+        "ip": "203.0.113.45",
+        "location": "Madrid, ES",
+        "device_id": "DEV-001",
+        "is_compliant": true,
+        "status": "success",
+        "risk_level": "low"
+    },
+    {
+        "timestamp": "2024-01-26T08:05:00Z",
+        "user": "admin.server@techcorp.com",
+        "ip": "1.2.3.4",
+        "location": "Unknown",
+        "device_id": null,
+        "is_compliant": false,
+        "status": "failed",
+        "reason": "MFA required",
+        "risk_level": "medium"
+    },
+    {
+        "timestamp": "2024-01-26T08:15:00Z",
+        "user": "carlos.garcia@techcorp.com",
+        "ip": "80.1.2.3",
+        "location": "Madrid, ES",
+        "device_id": "DEV-882",
+        "is_compliant": true,
+        "status": "success",
+        "risk_level": "low"
+    },
+    {
+        "timestamp": "2024-01-26T09:30:00Z",
+        "user": "carlos.garcia@techcorp.com",
+        "ip": "103.20.10.5",
+        "location": "Tokyo, JP",
+        "device_id": "DEV-882",
+        "is_compliant": true,
+        "status": "success",
+        "risk_level": "high",
+        "alert": "Impossible Travel"
+    },
+    {
+        "timestamp": "2024-01-26T10:00:00Z",
+        "user": "john.doe@techcorp.com",
+        "ip": "185.200.100.1",
+        "location": "Moscow, RU",
+        "device_id": null,
+        "is_compliant": false,
+        "status": "success",
+        "risk_level": "critical",
+        "alert": "Unmanaged Device + Risky Location"
+    },
+    {
+        "timestamp": "2024-01-26T10:01:00Z",
+        "user": "john.doe@techcorp.com",
+        "ip": "185.200.100.1",
+        "location": "Moscow, RU",
+        "status": "blocked",
+        "reason": "Conditional Access Policy: Block access from RU",
+        "risk_level": "high"
+    },
+    {
+        "timestamp": "2024-01-26T11:00:00Z",
+        "user": "finance.dept@techcorp.com",
+        "ip": "192.168.1.50",
+        "location": "Madrid, ES",
+        "device_id": "DEV-FIN-01",
+        "is_compliant": false,
+        "status": "blocked",
+        "reason": "Device not compliant (OS outdated)",
+        "risk_level": "medium"
+    }
+]
