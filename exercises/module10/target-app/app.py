@@ -21,6 +21,9 @@ def index():
 
 @app.route('/login', methods=['GET', 'POST'])
 def login():
+    if request.cookies.get('SESSION_ID'):
+        return redirect(url_for('dashboard'))
+
     if request.method == 'POST':
         username = request.form.get('username')
         password = request.form.get('password')
