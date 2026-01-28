@@ -108,7 +108,7 @@ services:
   # Módulo 10: Modlishka (Atacante)
   # Requiere mapear '127.0.0.1 phishing.local' en /etc/hosts del host
   modlishka:
-    image: drk1wi/modlishka:latest
+    build: ./exercises/module10/modlishka-docker
     container_name: workshop_modlishka
     hostname: phishing.local
     ports:
