@@ -1,5 +1,5 @@
 FROM python:3.9-slim
 WORKDIR /app
-RUN pip install flask pyopenssl
+RUN pip install flask pyopenssl pyotp "qrcode[pil]"
 COPY . /app
 CMD ["python", "app.py"]
