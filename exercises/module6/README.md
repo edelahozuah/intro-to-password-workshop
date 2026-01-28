@@ -11,6 +11,26 @@
 
 ## 📖 Teoría
 
+### Flujo de Credential Stuffing
+
+```mermaid
+sequenceDiagram
+    participant 🦹 Attacker
+    participant 📂 Breach Database
+    participant 🌐 Target Service
+    
+    🦹->>📂: Get list (user:pass)
+    loop For each credential
+        🦹->>🌐: Try Login (user:pass)
+        alt Valid Credentials
+            🌐-->>🦹: 200 OK / Welcome
+            Note over 🦹: ✅ Success!
+        else Invalid
+            🌐-->>🦹: 401 Unauthorized
+        end
+    end
+```
+
 ### ¿Qué es Credential Stuffing?
 
 **Definición**: Uso de credenciales obtenidas de una brecha de datos para intentar acceder a **otros servicios**.
