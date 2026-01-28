@@ -21,6 +21,7 @@ Un taller completo y reproducible diseñado para estudiantes de nivel iniciació
 6. **Credential Stuffing**: **CredMaster** (teoría) y scripts custom.
 7. **Stealers**: Análisis de logs tipo **LaZagne/DonPAPI** con MITRE ATT&CK.
 8. **Detección y Defensa**: Green/Blue Team, análisis de logs y **Conditional Access**.
+9. **Evasión**: Rotación de IPs con **Tor** para evadir Rate Limiting.
 
 ## 🚀 Inicio Rápido
 
@@ -76,7 +77,8 @@ password-security-workshop/
 │   ├── module5/                # Ataques online (Hydra)
 │   ├── module6/                # Credential stuffing
 │   ├── module7/                # Stealers y MITRE ATT&CK
-│   └── module8/                # Detección y defensa (Blue Team)
+│   ├── module8/                # Detección y defensa (Blue Team)
+│   └── module9/                # Evasión y Rotación de IPs (Tor)
 ├── wordlists/                  # Diccionarios de contraseñas
 ├── scripts/                    # Scripts de soporte
 ├── solutions/                  # Soluciones de ejercicios

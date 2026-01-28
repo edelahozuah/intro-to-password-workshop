@@ -37,12 +37,52 @@ def index():
         'endpoints': ['/api/login', '/api/register', '/api/profile']
     })
 
+# Rate Limiting simulación
+FAILED_ATTEMPTS = {}
+BLOCKED_IPS = {}
+BLOCK_DURATION = 60  # segundos
+
+def get_client_ip():
+    """Obtiene la IP del cliente (soporta X-Forwarded-For)"""
+    if request.headers.get('X-Forwarded-For'):
+        return request.headers.get('X-Forwarded-For').split(',')[0]
+    return request.remote_addr
+
+def is_ip_blocked(ip):
+    """Verifica si una IP está bloqueada"""
+    if ip in BLOCKED_IPS:
+        if datetime.now().timestamp() < BLOCKED_IPS[ip]:
+            return True
+        else:
+            del BLOCKED_IPS[ip]  # Expira bloqueo
+            if ip in FAILED_ATTEMPTS:
+                del FAILED_ATTEMPTS[ip]
+    return False
+
+@app.route('/api/check-ip', methods=['GET'])
+def check_ip():
+    """Endpoint para verificar la IP de origen (útil para probar proxies)"""
+    client_ip = get_client_ip()
+    return jsonify({
+        'ip': client_ip,
+        'blocked': is_ip_blocked(client_ip),
+        'headers': dict(request.headers)
+    })
+
 @app.route('/api/login', methods=['POST'])
 def login():
     """
-    Endpoint de login vulnerable
-    NO implementa: rate limiting, account lockout, CAPTCHA
+    Endpoint de login vulnerable pero con Rate Limiting simple
     """
+    client_ip = get_client_ip()
+    
+    # Verificar bloqueo
+    if is_ip_blocked(client_ip):
+        return jsonify({
+            'success': False,
+            'error': 'Too many failed attempts. IP blocked temporarily.'
+        }), 429
+
     data = request.get_json()
     
     if not data or 'username' not in data or 'password' not in data:
@@ -54,13 +94,16 @@ def login():
     username = data['username']
     password = data['password']
     
-    # Log del intento (para debugging)
-    print(f"[{datetime.now()}] Login attempt: {username}")
+    # Log del intento
+    print(f"[{datetime.now()}] Login attempt: {username} from {client_ip}")
     
     # Verificar credenciales
     if username in users:
-        # Comparar hash MD5 (inseguro)
         if users[username]['password_hash'] == hash_password(password):
+            # Reset intentos fallidos al éxito
+            if client_ip in FAILED_ATTEMPTS:
+                del FAILED_ATTEMPTS[client_ip]
+                
             return jsonify({
                 'success': True,
                 'message': 'Login successful',
@@ -71,10 +114,18 @@ def login():
                 'token': f"TOKEN_{username}_{datetime.now().timestamp()}"
             }), 200
     
-    # Fallo de autenticación
+    # Registrar fallo
+    FAILED_ATTEMPTS[client_ip] = FAILED_ATTEMPTS.get(client_ip, 0) + 1
+    
+    # Bloquear si > 5 intentos
+    if FAILED_ATTEMPTS[client_ip] >= 5:
+        BLOCKED_IPS[client_ip] = datetime.now().timestamp() + BLOCK_DURATION
+        print(f"⚠️ BLOCKING IP {client_ip} for {BLOCK_DURATION}s")
+    
     return jsonify({
         'success': False,
-        'error': 'Invalid username or password'
+        'error': 'Invalid username or password',
+        'attempts_left': max(0, 5 - FAILED_ATTEMPTS.get(client_ip, 0))
     }), 401
 
 @app.route('/api/register', methods=['POST'])
@@ -136,12 +187,13 @@ def stats():
         'total_users': len(users),
         'service_status': 'running',
         'security_features': {
-            'rate_limiting': False,
+            'rate_limiting': True,
             'account_lockout': False,
             'captcha': False,
             'mfa': False,
             'password_hashing': 'MD5 (WEAK)'
-        }
+        },
+        'blocked_ips_count': len(BLOCKED_IPS)
     })
 
 if __name__ == '__main__':

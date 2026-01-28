@@ -63,7 +63,8 @@ def create_complete_presentation():
 5. Ataques Online (Hydra)
 6. Credential Stuffing
 7. Análisis de Stealers
-8. Detección y Defensa (Blue Team)"""
+8. Detección y Defensa (Blue Team)
+9. Evasión y Rotación de IPs"""
         },
         # Módulo 1
         {
@@ -192,6 +193,23 @@ Patrones en logs (grep, jq):
 • Impossible Travel: Madrid 10:00 → Tokyo 11:00
 • Device Compliance: ¿Antivirus activo?
 • Risky IP: Tor, VPNs anónimas"""
+        },
+        # Módulo 9
+        {
+            "type": "content",
+            "title": "Módulo 9: Evasión y Rotación de IPs",
+            "body": """🚫 Rate Limiting y Bloqueos:
+• WAFs bloquean IPs tras X intentos fallidos
+• Error 429 Too Many Requests
+
+🧅 Evasión con Tor / Proxy Pools:
+• Enrutar tráfico vía Tor (SOCKS5)
+• La IP de salida rota periódicamente
+• Permite fuerza bruta lenta distribuida
+
+🛠️ Práctica:
+• Script Python + requests[socks]
+• Contenedor Tor Proxy"""
         },
         # Herramientas
         {

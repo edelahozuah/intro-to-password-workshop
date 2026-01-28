@@ -12,7 +12,7 @@ services:
       - ./scripts:/scripts
       - ./solutions:/solutions
     command: >
-      /bin/bash -c " apt update && apt install -y john hashcat hydra git python3 python3-pip curl wget vim nano tree ffuf jq && git clone https://github.com/Mebus/cupp.git /opt/cupp && git clone https://github.com/LandGrey/pydictor.git /opt/pydictor && git clone https://github.com/pcaro90/palabrario.git /opt/palabrario && git clone --depth 1 https://github.com/danielmiessler/SecLists.git /opt/SecLists && pip3 install requests colorama name-that-hash --break-system-packages && mkdir -p /opt/rules && wget https://raw.githubusercontent.com/NotSoSecure/password_cracking_rules/master/OneRuleToRuleThemAll.rule -O /opt/rules/OneRuleToRuleThemAll.rule && wget https://raw.githubusercontent.com/praetorian-inc/Hob0Rules/master/hob064.rule -O /opt/rules/hob064.rule && ln -sf /opt/SecLists/Passwords /wordlists/seclists && echo 'Entorno listo. Herramientas: FFUF, NTH, Pydictor, SecLists, Rules, Palabrario, JQ' && echo 'Usa: docker-compose exec attacker /bin/bash' && tail -f /dev/null "
+      /bin/bash -c " apt update && apt install -y john hashcat hydra git python3 python3-pip curl wget vim nano tree ffuf jq proxychains4 && git clone https://github.com/Mebus/cupp.git /opt/cupp && git clone https://github.com/LandGrey/pydictor.git /opt/pydictor && git clone https://github.com/pcaro90/palabrario.git /opt/palabrario && git clone --depth 1 https://github.com/danielmiessler/SecLists.git /opt/SecLists && pip3 install requests[socks] requests-ip-rotator beautifulsoup4 lxml colorama name-that-hash --break-system-packages && mkdir -p /opt/rules && wget https://raw.githubusercontent.com/NotSoSecure/password_cracking_rules/master/OneRuleToRuleThemAll.rule -O /opt/rules/OneRuleToRuleThemAll.rule && wget https://raw.githubusercontent.com/praetorian-inc/Hob0Rules/master/hob064.rule -O /opt/rules/hob064.rule && ln -sf /opt/SecLists/Passwords /wordlists/seclists && echo 'Entorno listo. Herramientas: FFUF, NTH, Pydictor, SecLists, Rules, Palabrario, JQ' && echo 'Usa: docker-compose exec attacker /bin/bash' && tail -f /dev/null "
     networks:
       - lab-network
     stdin_open: true
@@ -80,6 +80,19 @@ services:
       - lab-network
     environment:
       - FLASK_ENV=development
+
+  # Proxy Tor para rotación de IPs (Módulo 9)
+  tor-proxy:
+    image: dperson/torproxy
+    container_name: workshop_tor
+    hostname: tor-proxy
+    ports:
+      - "9050:9050"
+      - "8118:8118"
+    environment:
+      - TOR_NewCircuitPeriod=10 # Forzar cambio de circuito frecuentemente
+    networks:
+      - lab-network
 
 networks:
   lab-network:
