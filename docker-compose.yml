@@ -103,7 +103,7 @@ services:
       - lab-network
     # Exponemos puerto para simular el "Sitio Real" y probar el secuestro de sesión
     ports:
-      - "8088:80"
+      - "8088:443"
 
   # Módulo 10: Modlishka (Atacante)
   # Requiere mapear '127.0.0.1 phishing.local' en /etc/hosts del host

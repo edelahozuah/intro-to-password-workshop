@@ -2,7 +2,7 @@
   "proxyDomain": "phishing.local",
   "listeningAddress": "0.0.0.0",
   "proxyAddress": "",
-  "target": "http://target-app",
+  "target": "target-app",
   "targetResources": "",
   "rules": "",
   "terminateTriggers": "",

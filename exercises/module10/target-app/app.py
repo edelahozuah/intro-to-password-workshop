@@ -63,4 +63,7 @@ def dashboard():
     return render_template('dashboard.html', token=token)
 
 if __name__ == '__main__':
-    app.run(host='0.0.0.0', port=80)
+    # Ejecutamos en puerto 80 (HTTP) para debug y redirección interna si hiciera falta
+    # Pero para Modlishka necesitamos port 443 (HTTPS)
+    # Flask dev server no soporta dual stack fácil. Usaremos 443 con SSL.
+    app.run(host='0.0.0.0', port=443, ssl_context='adhoc')
