@@ -109,6 +109,10 @@ Además de SecLists, existen proyectos enfocados en la **probabilidad estadísti
 - **[Probable-Wordlists](https://github.com/berzerk0/Probable-Wordlists)**: Listas ordenadas estadísticamente. Ideal para optimizar tiempos.
 - **[Weakpass](https://weakpass.com)**: Ofrece desde "Top 100k" (muy rápido) hasta listas de 100GB para cracking con GPU.
 
+### Módulo 2: Diccionarios y Listas de Palabras
+
+> ⏱️ **Tiempo estimado**: 45 minutos
+
 ### Diccionarios Regionales: Palabrario (Español) 🇪🇸
 
 Las contraseñas dependen del **idioma** y la **cultura**. `rockyou.txt` es muy anglocéntrico.
@@ -545,5 +549,4 @@ Has completado este módulo cuando:
 
 ---
 
-**Anterior**: [Módulo 1 - Fuerza Bruta](../module1/README.md)  
-**Siguiente**: [Módulo 3 - Diccionarios Personalizados](../module3/README.md)
+🔙 [Anterior: Módulo 1 - Fuerza Bruta](../module1/README.md) | 🔜 [Siguiente: Módulo 3 - Diccionarios Personalizados](../module3/README.md)

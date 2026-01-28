@@ -1,5 +1,7 @@
 # Módulo 1: Ataques Offline - Fuerza Bruta
 
+> ⏱️ **Tiempo estimado**: 45 minutos
+
 ## 🎯 Objetivos de Aprendizaje
 
 - Comprender cómo se almacenan las contraseñas (hashing)
@@ -230,4 +232,4 @@ Has completado este módulo cuando:
 
 ---
 
-**Siguiente**: [Módulo 2 - Ataques con Diccionario](../module2/README.md)
+🔙 [Volver al Inicio](../../README.md) | 🔜 [Siguiente: Módulo 2 - Ataques con Diccionario](../module2/README.md)

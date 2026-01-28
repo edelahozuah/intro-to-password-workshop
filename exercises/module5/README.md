@@ -1,5 +1,7 @@
 # Módulo 5: Ataques Online
 
+> ⏱️ **Tiempo estimado**: 60 minutos
+
 ## 🎯 Objetivos de Aprendizaje
 
 - Diferenciar ataques offline vs online
@@ -331,5 +333,4 @@ Has completado este módulo cuando:
 
 ---
 
-**Anterior**: [Módulo 4 - Reglas](../module4/README.md)  
-**Siguiente**: [Módulo 6 - Credential Stuffing](../module6/README.md)
+🔙 [Anterior: Módulo 4 - Reglas](../module4/README.md) | 🔜 [Siguiente: Módulo 6 - Credential Stuffing](../module6/README.md)

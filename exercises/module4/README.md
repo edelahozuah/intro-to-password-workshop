@@ -1,5 +1,7 @@
 # Módulo 4: Reglas de Transformación
 
+> ⏱️ **Tiempo estimado**: 45 minutos
+
 ## 🎯 Objetivos de Aprendizaje
 
 - Comprender cómo funcionan las reglas de mutación
@@ -334,5 +336,4 @@ Has completado este módulo cuando:
 
 ---
 
-**Anterior**: [Módulo 3 - CUPP](../module3/README.md)  
-**Siguiente**: [Módulo 5 - Ataques Online](../module5/README.md)
+🔙 [Anterior: Módulo 3 - CUPP](../module3/README.md) | 🔜 [Siguiente: Módulo 5 - Ataques Online](../module5/README.md)

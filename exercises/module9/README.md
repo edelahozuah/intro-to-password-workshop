@@ -1,5 +1,7 @@
 # Módulo 9: Evasión y Rotación de IPs
 
+> ⏱️ **Tiempo estimado**: 30 minutos
+
 ## 🎯 Objetivos de Aprendizaje
 
 -   Comprender las técnicas de defensa: **Rate Limiting** y **Bloqueo de IPs**.
@@ -125,3 +127,7 @@ python3 aws_gateway_attack.py
 El script creará automáticamente una API en tu cuenta AWS, lanzará peticiones a través de ella (rotando IPs), y luego la borrará.
 
 > **Nota**: Esta técnica requiere que el objetivo sea accesible desde Internet (IP Pública). No funcionará contra nuestra `vulnerable-api` local dockerizada a menos que expongas tu puerto local a internet (ej: usando `ngrok`).
+
+---
+
+🔙 [Anterior: Módulo 8 - Detección y Defensa](../module8/README.md) | 🔜 [Siguiente: Módulo 10 - Phishing 2FA](../module10/README.md)

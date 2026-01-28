@@ -1,5 +1,7 @@
 # Módulo 10: Phishing 2FA con Modlishka
 
+> ⏱️ **Tiempo estimado**: 60 minutos
+
 ## 🎯 Objetivo de Aprendizaje
 Entender la amenaza de los ataques de **Reverse Proxy Phishing** capaces de eludir la autenticación de doble factor (2FA) capturando no solo credenciales, sino también tokens SMS/TOTP y cookies de sesión.
 

@@ -1,5 +1,7 @@
 # Módulo 6: Credential Stuffing
 
+> ⏱️ **Tiempo estimado**: 60 minutos
+
 ## 🎯 Objetivos de Aprendizaje
 
 - Comprender qué es credential stuffing y por qué funciona
@@ -377,5 +379,4 @@ Has completado este módulo cuando:
 
 ---
 
-**Anterior**: [Módulo 5 - Ataques Online](../module5/README.md)  
-**Siguiente**: [Módulo 7 - Análisis de Stealers](../module7/README.md)
+🔙 [Anterior: Módulo 5 - Ataques Online](../module5/README.md) | 🔜 [Siguiente: Módulo 7 - Análisis de Stealers](../module7/README.md)

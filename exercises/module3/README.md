@@ -1,5 +1,7 @@
 # Módulo 3: Diccionarios Personalizados (OSINT + CUPP)
 
+> ⏱️ **Tiempo estimado**: 45 minutos
+
 ## 🎯 Objetivos de Aprendizaje
 
 - Comprender la importancia del OSINT en seguridad
@@ -347,5 +349,4 @@ Has completado este módulo cuando:
 
 ---
 
-**Anterior**: [Módulo 2 - Diccionarios](../module2/README.md)  
-**Siguiente**: [Módulo 4 - Reglas de Transformación](../module4/README.md)
+🔙 [Anterior: Módulo 2 - Diccionarios](../module2/README.md) | 🔜 [Siguiente: Módulo 4 - Reglas de Transformación](../module4/README.md)

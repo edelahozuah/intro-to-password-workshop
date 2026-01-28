@@ -1,5 +1,7 @@
 # Módulo 7: Análisis de Stealers (Info-Stealers)
 
+> ⏱️ **Tiempo estimado**: 45 minutos
+
 ## 🎯 Objetivos de Aprendizaje
 
 - Comprender cómo funcionan los info-stealers
@@ -408,7 +410,7 @@ Has completado este módulo cuando:
 
 ---
 
-**Anterior**: [Módulo 6 - Credential Stuffing](../module6/README.md) | **Siguiente**: [Módulo 8 - Detección y Defensa](../module8/README.md)
+🔙 [Anterior: Módulo 6 - Credential Stuffing](../module6/README.md) | 🔜 [Siguiente: Módulo 8 - Detección y Defensa](../module8/README.md)
 
 ---
 

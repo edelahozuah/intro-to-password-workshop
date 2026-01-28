@@ -1,5 +1,7 @@
 # Módulo 8: Detección y Defensa (Blue Team)
 
+> ⏱️ **Tiempo estimado**: 45 minutos
+
 ## 🎯 Objetivos de Aprendizaje
 
 - Detectar ataques de fuerza bruta y spraying en logs de sistema
