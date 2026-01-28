@@ -72,16 +72,17 @@ Ahora actuarás como el atacante que quiere usar esa sesión robada para entrar 
 
 1.  **Datos robados**: Copia el valor del `SESSION_ID` que aparece en los logs de Modlishka (será una cadena hexadecimal larga).
 2.  **Sitio Real**: Abre una **Pestaña de Incógnito** (o usa otro navegador) y ve al "banco real" que corre en el puerto 8088:
-    *   URL: `http://localhost:8088`
+    *   URL: `https://localhost:8088` (Acepta el certificado).
     *   Verás que te pide Login (no estás autenticado).
 3.  **Inyección de Cookie**:
     *   Abre las **Herramientas de Desarrollador** (F12 o Clic Derecho -> Inspeccionar).
     *   Ve a la pestaña **Almacenamiento** (Storage) en Firefox o **Aplicación** (Application) en Chrome.
-    *   En la sección **Cookies**, selecciona `http://localhost:8088`.
+    *   En la sección **Cookies**, selecciona `https://localhost:8088`.
     *   Haz clic derecho -> "Añadir elemento" o doble clic en una fila vacía.
     *   **Nombre**: `SESSION_ID`
     *   **Valor**: (Pega el valor hexadecimal que copiaste del log).
-    *   Asegúrate que `HttpOnly` y `Secure` no impidan la lectura (en nuestro lab simple no deberían).
+    *   **Path**: `/` (Asegúrate de que este campo tenga una barra, o la cookie no servirá para todo el sitio).
+    *   **Secure / HttpOnly**: Déjalos como estén.
 4.  **Acceso**:
     *   Refresca la página (`F5`).
     *   ¡Estás dentro! Has accedido al `Dashboard` sin poner usuario, contraseña ni código 2FA.
