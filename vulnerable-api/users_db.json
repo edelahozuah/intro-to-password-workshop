@@ -1,17 +1,32 @@
 {
   "admin": {
-    "email": "admin@vulnerable-api.local",
+    "email": "admin@example.com",
     "password_hash": "5f4dcc3b5aa765d61d8327deb882cf99",
-    "created": "2024-01-01T00:00:00"
+    "created": "2023-01-01T00:00:00"
   },
-  "testuser": {
-    "email": "test@example.com",
+  "carlos.garcia": {
+    "email": "cgarcia@corp.local",
+    "password_hash": "5d41402abc4b2a76b9719d911017c592",
+    "created": "2023-03-15T09:30:00"
+  },
+  "maria.lopez": {
+    "email": "mlopez@corp.local",
+    "password_hash": "b1b3773a05c0ed0176787a4f1574ff003871153e",
+    "created": "2023-02-10T14:20:00"
+  },
+  "jdoe": {
+    "email": "john.doe@email.com",
     "password_hash": "5f4dcc3b5aa765d61d8327deb882cf99",
-    "created": "2024-01-15T10:30:00"
+    "created": "2023-05-20T11:00:00"
   },
-  "john123": {
-    "email": "john@example.com",
+  "alice": {
+    "email": "alice@wonderland.com",
     "password_hash": "e10adc3949ba59abbe56e057f20f883e",
-    "created": "2024-01-10T14:20:00"
+    "created": "2023-06-01T10:00:00"
+  },
+  "bob": {
+    "email": "bob@builder.com",
+    "password_hash": "5e884898da28047151d0e56f8dc62927773f3f5a",
+    "created": "2023-06-02T16:45:00"
   }
 }

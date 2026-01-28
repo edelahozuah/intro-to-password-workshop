@@ -70,6 +70,20 @@ Busca líneas que contengan:
 *   `Post data: otp=XXXXXX` (Tu código del móvil capturado).
 *   **SESSION_ID**: ¡El atacante ha robado tu cookie de sesión! Con esto puede acceder a tu cuenta sin necesitar password ni 2FA.
 
+### 4.b. Panel de Control Web 🕵️‍♀️
+
+Modlishka incluye una interfaz web oculta para ver las capturas en tiempo real de forma gráfica.
+
+1.  Abre tu navegador y ve a: **`https://phishing.local/SayHello2Modlishka`**
+2.  Autentícate si te lo pide (típicamente `admin` / `modlishka`, revisa los logs de inicio si no funciona).
+3.  Verás tablas con:
+    *   **Tracked Users**: Víctimas activas.
+    *   **Captured Credentials**: Usuarios y contraseñas.
+    *   **2FA Tokens**: Códigos TOTP interceptados.
+    *   **Notes**: Cookies de sesión y otros datos.
+
+Es una herramienta visual muy potente para demostrar el impacto.
+
 ### 5. Secuestro de Sesión (Session Hijacking) 🏴‍☠️
 
 Ahora actuarás como el atacante que quiere usar esa sesión robada para entrar al banco real.
@@ -101,3 +115,35 @@ A diferencia de los SMS/TOTP, WebAuthn vincula criptográficamente el login con 
 *   Si estás en `google.com`, la llave firma para `google.com`.
 *   Si estás en `phishing.local`, la llave firma para `phishing.local` (o se niega a firmar).
 *   El servidor real (`google.com`) recibe una firma inválida y rechaza el acceso, deteniendo el ataque de Modlishka.
+
+---
+
+## 🎓 Fin del Taller
+
+¡Felicidades por completar el **Taller Práctico de Seguridad en Contraseñas**!
+
+### Resumen de Aprendizajes
+
+| Módulo | Técnicas Aprendidas |
+|--------|---------------------|
+| **1** | Cracking offline, fuerza bruta, John/Hashcat |
+| **2** | Diccionarios (rockyou, SecLists, Weakpass) |
+| **3** | CUPP, perfilado OSINT, diccionarios personalizados |
+| **4** | Reglas de mutación, OneRuleToRuleThemAll |
+| **5** | Ataques online con Hydra, FFUF |
+| **6** | Credential stuffing, automatización |
+| **7** | Stealers, análisis MITRE ATT&CK, IOCs |
+| **8** | Detección Blue Team, Conditional Access, logs |
+| **9** | Evasión de Rate Limiting, Rotación de IPs, Tor |
+| **10** | Phishing 2FA, Modlishka, Session Hijacking |
+
+### Próximos Pasos
+
+1. **Practica** en plataformas como [HackTheBox](https://hackthebox.com), [TryHackMe](https://tryhackme.com)
+2. **Certifícate**: CEH, OSCP, GPEN, GIAC
+3. **Participa** en CTFs (Capture The Flag)
+4. **Contribuye** a la comunidad open source de seguridad
+
+---
+
+🔙 [Anterior: Módulo 9 - Evasión](../module9/README.md) | 🏠 [Volver al Inicio](../../README.md)

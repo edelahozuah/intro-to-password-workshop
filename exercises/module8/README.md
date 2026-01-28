@@ -145,6 +145,8 @@ cat ad_signin_logs.json | jq '.[] | select(.status=="success" and .is_compliant=
 
 ---
 
+---
+
 ## ✅ Criterios de Completitud
 
 Has completado este módulo cuando:
@@ -157,47 +159,5 @@ Has completado este módulo cuando:
 
 ---
 
-**Anterior**: [Módulo 7 - Stealers](../module7/README.md)
-
----
-
-## 🎓 Fin del Taller
-
-¡Felicidades por completar el **Taller Práctico de Seguridad en Contraseñas**!
-
-### Resumen de Aprendizajes
-
-| Módulo | Técnicas Aprendidas |
-|--------|---------------------|
-| **1** | Cracking offline, fuerza bruta, John/Hashcat |
-| **2** | Diccionarios (rockyou, SecLists, Weakpass) |
-| **3** | CUPP, perfilado OSINT, diccionarios personalizados |
-| **4** | Reglas de mutación, OneRuleToRuleThemAll |
-| **5** | Ataques online con Hydra, FFUF |
-| **6** | Credential stuffing, automatización |
-| **7** | Stealers, análisis MITRE ATT&CK, IOCs |
-| **8** | Detección Blue Team, Conditional Access, logs |
-
-### Próximos Pasos
-
-1. **Practica** en plataformas como [HackTheBox](https://hackthebox.com), [TryHackMe](https://tryhackme.com)
-2. **Certifícate**: CEH, OSCP, GPEN, GIAC
-3. **Participa** en CTFs (Capture The Flag)
-4. **Contribuye** a la comunidad open source de seguridad
-
-### Recursos Adicionales
-
-- [OWASP Password Cheat Sheet](https://cheatsheetseries.owasp.org/cheatsheets/Password_Storage_Cheat_Sheet.html)
-- [MITRE ATT&CK](https://attack.mitre.org/)
-- [Have I Been Pwned](https://haveibeenpwned.com/)
-- [Hashcat Wiki](https://hashcat.net/wiki/)
-
----
-
-> [!TIP]
-> Recuerda: las técnicas aprendidas son **exclusivamente para uso ético y legal** en entornos autorizados.
-
----
-
-🔙 [Volver al README principal](../../README.md)
+🔙 [Anterior: Módulo 7 - Stealers](../module7/README.md) | 🔜 [Siguiente: Módulo 9 - Evasión y Rotación de IPs](../module9/README.md)
 

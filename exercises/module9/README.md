@@ -37,7 +37,7 @@ Intenta atacar sin protección y observa qué ocurre.
 
 Ejecuta el script de prueba de bloqueo:
 ```bash
-python3 verify_block.py
+docker-compose exec attacker python3 /exercises/module9/verify_block.py
 ```
 
 Deberías ver cómo tras el intento 5, la API devuelve error 429 y bloquea tu IP.
@@ -51,7 +51,7 @@ En este taller, el servicio está configurado para rotar agresivamente o podemos
 
 Ejecuta el script de ataque con soporte de Proxy:
 ```bash
-python3 proxy_attack.py
+docker-compose exec attacker python3 /exercises/module9/proxy_attack.py
 ```
 
 ### Análisis del código `proxy_attack.py`
