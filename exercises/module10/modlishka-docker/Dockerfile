@@ -1,4 +1,4 @@
-FROM golang:1.20-alpine AS builder
+FROM golang:alpine AS builder
 RUN apk add --no-cache git
 WORKDIR /app
 RUN git clone https://github.com/drk1wi/Modlishka.git .
