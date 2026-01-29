@@ -14,14 +14,14 @@
 ### Arquitectura de Ataque Online
 
 ```mermaid
-graph TD
-    A[🦹 Attacker (Hydra)] -->|SSH (port 22)| B[🖥️ SSH Target]
-    A -->|HTTP POST| C[🌐 DVWA Web]
+flowchart TD
+    A["🦹 Attacker (Hydra)"] -->|"SSH (port 22)"| B["🖥️ SSH Target"]
+    A -->|"HTTP POST"| C["🌐 DVWA Web"]
     
     subgraph "Intrusion Detection"
-        B -->|Logs| D[📄 auth.log]
-        C -->|Logs| E[📄 access.log]
-        D -.-> F[👮 Fail2Ban]
+        B -->|Logs| D["📄 auth.log"]
+        C -->|Logs| E["📄 access.log"]
+        D -.-> F["👮 Fail2Ban"]
         F -->|Block IP| A
     end
 ```

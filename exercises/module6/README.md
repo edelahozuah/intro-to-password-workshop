@@ -15,18 +15,18 @@
 
 ```mermaid
 sequenceDiagram
-    participant 🦹 Attacker
-    participant 📂 Breach Database
-    participant 🌐 Target Service
+    participant A as 🦹 Attacker
+    participant D as 📂 Breach Database
+    participant T as 🌐 Target Service
     
-    🦹->>📂: Get list (user:pass)
+    A->>D: Get list (user:pass)
     loop For each credential
-        🦹->>🌐: Try Login (user:pass)
+        A->>T: Try Login (user:pass)
         alt Valid Credentials
-            🌐-->>🦹: 200 OK / Welcome
-            Note over 🦹: ✅ Success!
+            T-->>A: 200 OK / Welcome
+            Note over A: ✅ Success!
         else Invalid
-            🌐-->>🦹: 401 Unauthorized
+            T-->>A: 401 Unauthorized
         end
     end
 ```

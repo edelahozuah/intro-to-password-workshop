@@ -13,33 +13,33 @@ Entender la amenaza de los ataques de **Reverse Proxy Phishing** capaces de elud
 
 ```mermaid
 sequenceDiagram
-    participant 👤 Victim
-    participant 🦹 Modlishka (Proxy)
-    participant 🏦 Target Bank (Real)
+    participant V as 👤 Victim
+    participant M as 🦹 Modlishka (Proxy)
+    participant B as 🏦 Target Bank (Real)
     
-    Note over 👤, 🦹: Phishing Domain (phishing.local)
-    Note over 🦹, 🏦: HTTPS Traffic
+    Note over V, M: Phishing Domain (phishing.local)
+    Note over M, B: HTTPS Traffic
     
-    👤->>🦹: GET /login
-    🦹->>🏦: GET /login (Forwarded)
-    🏦-->>🦹: 200 OK (Login Page)
-    🦹-->>👤: 200 OK (Login Page - Modified)
+    V->>M: GET /login
+    M->>B: GET /login (Forwarded)
+    B-->>M: 200 OK (Login Page)
+    M-->>V: 200 OK (Login Page - Modified)
     
-    Note right of 👤: User thinks it's real
-    👤->>🦹: POST User + Password
-    Note right of 🦹: 📝 Capture Credentials
-    🦹->>🏦: POST User + Password
+    Note right of V: User thinks it's real
+    V->>M: POST User + Password
+    Note right of M: 📝 Capture Credentials
+    M->>B: POST User + Password
     
-    🏦-->>🦹: 200 OK (Ask for 2FA/TOTP)
-    🦹-->>👤: 200 OK (Ask for 2FA/TOTP)
+    B-->>M: 200 OK (Ask for 2FA/TOTP)
+    M-->>V: 200 OK (Ask for 2FA/TOTP)
     
-    👤->>🦹: POST 123456 (TOTP)
-    Note right of 🦹: 📝 Capture TOTP Code
-    🦹->>🏦: POST 123456
+    V->>M: POST 123456 (TOTP)
+    Note right of M: 📝 Capture TOTP Code
+    M->>B: POST 123456
     
-    🏦-->>🦹: 302 Redirect (Session Cookie)
-    Note right of 🦹: 🍪 Capture Session Cookie
-    🦹-->>👤: 302 Redirect (Logged in!)
+    B-->>M: 302 Redirect (Session Cookie)
+    Note right of M: 🍪 Capture Session Cookie
+    M-->>V: 302 Redirect (Logged in!)
 ```
 
 El entorno incluye dos nuevos contenedores:

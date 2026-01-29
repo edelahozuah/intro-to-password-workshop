@@ -11,12 +11,12 @@
 ### Arquitectura de Evasión
 
 ```mermaid
-graph LR
-    A[🦹 Attacker] -->|Direct Request| B[❌ Firewall/WAF]
+flowchart LR
+    A["🦹 Attacker"] -->|Direct Request| B["❌ Firewall/WAF"]
     B -->|Block IP| A
     
-    A -->|SOCKS5| C[🧅 Tor Proxy]
-    C -->|Circuit 1 (IP A)| D[✅ Vulnerable API]
+    A -->|SOCKS5| C["🧅 Tor Proxy"]
+    C -->|Circuit 1 (IP A)| D["✅ Vulnerable API"]
     C -->|Circuit 2 (IP B)| D
     C -->|Circuit 3 (IP C)| D
     
