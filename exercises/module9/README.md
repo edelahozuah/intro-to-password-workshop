@@ -37,11 +37,22 @@ Si un atacante supera este límite:
 ### IP Rotation (Evasión)
 Para continuar el ataque, el adversario necesita cambiar su "identidad" de red (IP de origen) para cada conjunto de intentos.
 
-**Técnicas**:
 -   **Proxy Pools**: Listas de miles de proxies públicos o privados (residenciales).
 -   **Tor Network**: Enrutamiento anónimo que cambia la IP de salida periódicamente.
 -   **Botnets**: Uso de dispositivos infectados dispersos globalmente.
 -   **Cloud Gateways**: Uso de AWS API Gateway para rotar IPs (IP Shuffle).
+
+### 🏢 Proxies Residenciales (Nivel Profesional)
+
+A diferencia de Tor (lento, nodos conocidos) o AWS (rango de IPs de datacenter fácil de detectar), los **Proxies Residenciales** enrutan el tráfico a través de dispositivos reales de usuarios domésticos (Wi-Fi, 4G).
+
+**Bright Data (antes Luminati)** es el proveedor líder. Permite:
+1.  **Rotación de IP por petición**: Cada request sale por una IP doméstica diferente.
+2.  **Targeting Geográfico**: Salir como usuario de "Madrid, España" o "Tokyo, Japón".
+3.  **Indetectable**: Para el WAF (Web Application Firewall), eres un usuario legítimo de Vodafone o Movistar.
+
+> 💰 **Coste**: Estos servicios son caros y se pagan por GB transferido.
+
 
 ---
 
@@ -144,6 +155,29 @@ python3 aws_gateway_attack.py
 El script creará automáticamente una API en tu cuenta AWS, lanzará peticiones a través de ella (rotando IPs), y luego la borrará.
 
 > **Nota**: Esta técnica requiere que el objetivo sea accesible desde Internet (IP Pública). No funcionará contra nuestra `vulnerable-api` local dockerizada a menos que expongas tu puerto local a internet.
+
+### 🏙️ Técnica: Bright Data (Proxies Residenciales)
+
+Si tienes una suscripción a Bright Data (o prueba gratuita), puedes usar su "Super Proxy" para rotación ilimitada de IPs residenciales.
+
+#### Configuración
+
+1.  Edita `exercises/module9/brightdata_attack.py`.
+2.  Introduce tus credenciales de Zona Residencial:
+    ```python
+    BD_USERNAME = "brd-customer-USER_ID-zone-RESIDENTIAL_ZONE" 
+    BD_PASSWORD = "TU_PASSWORD"
+    ```
+3.  Apunta al objetivo público (Ngrok).
+
+#### Ejecución
+```bash
+# Nota: Requiere requests y urllib3 (instalados en el contenedor attacker)
+docker-compose exec attacker python3 /exercises/module9/brightdata_attack.py
+```
+
+El script añade automáticamente un identificador de sesión aleatorio al usuario del proxy (`-session-RAND`) en cada petición. Esto fuerza a la infraestructura de Bright Data a asignar una **nueva IP** para cada intento de login.
+
  
 ### ⚠️ Exposición Pública con Ngrok (Avanzado)
 

