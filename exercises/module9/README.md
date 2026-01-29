@@ -162,19 +162,22 @@ Si tienes una suscripción a Bright Data (o prueba gratuita), puedes usar su "Su
 
 #### Configuración
 
-1.  Edita `exercises/module9/brightdata_attack.py`.
-2.  Introduce tus credenciales de Zona Residencial:
-    ```python
-    BD_USERNAME = "brd-customer-USER_ID-zone-RESIDENTIAL_ZONE" 
-    BD_PASSWORD = "TU_PASSWORD"
-    ```
-3.  Apunta al objetivo público (Ngrok).
+1.  Obtén tus credenciales de Bright Data (Username de Zona y Password).
+2.  Ejecuta el script pasando las variables de entorno:
 
-#### Ejecución
-```bash
-# Nota: Requiere requests y urllib3 (instalados en el contenedor attacker)
-docker-compose exec attacker python3 /exercises/module9/brightdata_attack.py
-```
+    ```bash
+    # Ejecución pasando credenciales (sin hardcodear en fichero)
+    docker-compose exec -e BD_USERNAME='brd-customer-ID-zone-RESIDENTIAL' \
+                        -e BD_PASSWORD='TU_PASSWORD' \
+                        attacker python3 /exercises/module9/brightdata_attack.py
+    ```
+
+    > **Tip**: Para no escribir el comando entero cada vez, puedes exportar las variables antes:
+    > ```bash
+    > export BD_USERNAME='...'
+    > export BD_PASSWORD='...'
+    > ```
+
 
 El script añade automáticamente un identificador de sesión aleatorio al usuario del proxy (`-session-RAND`) en cada petición. Esto fuerza a la infraestructura de Bright Data a asignar una **nueva IP** para cada intento de login.
 

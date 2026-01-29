@@ -7,18 +7,24 @@ import urllib3
 # Desactivar advertencias de SSL para proxys (opcional)
 urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
 
-# Configuración de Bright Data (User to fill)
-# En Bright Data, el formato suele ser: brd-customer-<ID>-zone-<ZONE>:password
-BD_USERNAME = "brd-customer-USER_ID-zone-RESIDENTIAL_ZONE" 
-BD_PASSWORD = "PASSWORD"
-BD_HOST = "brd.superproxy.io"
-BD_PORT = "22225" # Puerto estándar de Bright Data
+import os
+
+# Configuración de Bright Data (vía Variables de Entorno)
+BD_USERNAME = os.getenv("BD_USERNAME")
+BD_PASSWORD = os.getenv("BD_PASSWORD")
+BD_HOST = os.getenv("BD_HOST", "brd.superproxy.io")
+BD_PORT = os.getenv("BD_PORT", "22225")
+
+if not BD_USERNAME or not BD_PASSWORD:
+    print("[!] Error: Variables de entorno BD_USERNAME y BD_PASSWORD no definidas.")
+    print("    Ejecuta con: BD_USERNAME='...' BD_PASSWORD='...' python3 brightdata_attack.py")
+    sys.exit(1)
 
 # Objetivo (Tu VULNERABLE-API expuesta por NGROK o similar)
 # NOTA: Bright Data NO puede acceder a 'localhost' o 'vulnerable-api' interno.
 # Necesitas una URL pública (ngrok, AWS, etc.)
-TARGET_URL = "https://TU-URL-NGROK.ngrok-free.app/api/login"
-CHECK_IP_URL = "https://TU-URL-NGROK.ngrok-free.app/api/check-ip"
+TARGET_URL = "https://touristic-cris-brashier.ngrok-free.dev/api/login"
+CHECK_IP_URL = "https://touristic-cris-brashier.ngrok-free.dev/api/check-ip"
 
 def get_proxy_url():
     """Construye la URL del proxy autenticado"""
@@ -46,10 +52,7 @@ def attack():
     print(f"[*] Host: {BD_HOST}:{BD_PORT}")
     print(f"[*] Zona: {BD_USERNAME}")
     
-    if "USER_ID" in BD_USERNAME:
-        print("\n[!] ALERTA: Debes configurar BD_USERNAME y BD_PASSWORD en el script.")
-        print("[!] Saliendo...")
-        sys.exit(1)
+    print(f"[*] Zona: {BD_USERNAME}")
 
     print("\n[*] Probando conexión inicial...")
     check_current_ip()
