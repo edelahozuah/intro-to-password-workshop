@@ -80,6 +80,8 @@ services:
       - lab-network
     environment:
       - FLASK_ENV=development
+    volumes:
+      - ./vulnerable-api:/app
 
   # Proxy Tor para rotación de IPs (Módulo 9)
   tor-proxy:
