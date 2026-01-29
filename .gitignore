@@ -1,0 +1,25 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+venv/
+.env
+
+# Docker runtime & logs
+*.log
+*.pid
+exercises/module5/ssh-data/logs/
+exercises/module5/ssh-data/sshd.pid
+exercises/module8/logs/*.log
+exercises/module8/logs/*.json
+
+# System
+.DS_Store
+Thumbs.db
+
+# IDEs
+.vscode/
+.idea/
+
+# Modlishka
+plugin.so
