@@ -197,6 +197,12 @@ def stats():
         'blocked_ips_count': len(BLOCKED_IPS)
     })
 
+
+if __name__ == '__main__':
+    print("=" * 60)
+    print("Vulnerable API Server")
+    print("=" * 60)
+    
     # Configuración de Debug: Por defecto True para desarrollo, pero False si se expone
     # ¡IMPORTANTE! Nunca exponer con debug=True a Internet (RCE risk)
     debug_mode = os.environ.get('FLASK_DEBUG', 'True').lower() == 'true'
@@ -205,5 +211,6 @@ def stats():
         print("WARNING: Debug mode is ON. Do NOT expose to Internet.")
     else:
         print("INFO: Debug mode is OFF. Safer for exposure.")
+    print("=" * 60)
 
     app.run(host='0.0.0.0', port=5000, debug=debug_mode)
