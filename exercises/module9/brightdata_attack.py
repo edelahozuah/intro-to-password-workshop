@@ -17,14 +17,14 @@ BD_PORT = os.getenv("BD_PORT", "22225")
 
 if not BD_USERNAME or not BD_PASSWORD:
     print("[!] Error: Variables de entorno BD_USERNAME y BD_PASSWORD no definidas.")
-    print("    Ejecuta con: BD_USERNAME='...' BD_PASSWORD='...' python3 brightdata_attack.py")
+    print("    Ejecuta con: BD_USERNAME='...' BD_PASSWORD='...' TARGET_URL='https://...' python3 brightdata_attack.py")
     sys.exit(1)
 
 # Objetivo (Tu VULNERABLE-API expuesta por NGROK o similar)
 # NOTA: Bright Data NO puede acceder a 'localhost' o 'vulnerable-api' interno.
-# Necesitas una URL pública (ngrok, AWS, etc.)
-TARGET_URL = "https://touristic-cris-brashier.ngrok-free.dev/api/login"
-CHECK_IP_URL = "https://touristic-cris-brashier.ngrok-free.dev/api/check-ip"
+TARGET_BASE = os.getenv("TARGET_URL", "https://TU-URL-NGROK.ngrok-free.app")
+TARGET_URL = f"{TARGET_BASE}/api/login"
+CHECK_IP_URL = f"{TARGET_BASE}/api/check-ip"
 
 def get_proxy_url():
     """Construye la URL del proxy autenticado"""

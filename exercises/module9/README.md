@@ -166,9 +166,10 @@ Si tienes una suscripción a Bright Data (o prueba gratuita), puedes usar su "Su
 2.  Ejecuta el script pasando las variables de entorno:
 
     ```bash
-    # Ejecución pasando credenciales (sin hardcodear en fichero)
-    docker-compose exec -e BD_USERNAME='brd-customer-ID-zone-RESIDENTIAL' \
-                        -e BD_PASSWORD='TU_PASSWORD' \
+    # Ejecución pasando credenciales y URL objetivo
+    docker-compose exec -e BD_USERNAME='...' \
+                        -e BD_PASSWORD='...' \
+                        -e TARGET_URL='https://tu-url.ngrok-free.app' \
                         attacker python3 /exercises/module9/brightdata_attack.py
     ```
 
@@ -176,6 +177,7 @@ Si tienes una suscripción a Bright Data (o prueba gratuita), puedes usar su "Su
     > ```bash
     > export BD_USERNAME='...'
     > export BD_PASSWORD='...'
+    > export TARGET_URL='https://...'
     > ```
 
 
