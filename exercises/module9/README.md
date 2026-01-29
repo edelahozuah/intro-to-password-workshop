@@ -143,7 +143,40 @@ python3 aws_gateway_attack.py
 ```
 El script creará automáticamente una API en tu cuenta AWS, lanzará peticiones a través de ella (rotando IPs), y luego la borrará.
 
-> **Nota**: Esta técnica requiere que el objetivo sea accesible desde Internet (IP Pública). No funcionará contra nuestra `vulnerable-api` local dockerizada a menos que expongas tu puerto local a internet (ej: usando `ngrok`).
+> **Nota**: Esta técnica requiere que el objetivo sea accesible desde Internet (IP Pública). No funcionará contra nuestra `vulnerable-api` local dockerizada a menos que expongas tu puerto local a internet.
+ 
+### ⚠️ Exposición Pública con Ngrok (Avanzado)
+
+Para simular un ataque real desde Tor, el objetivo debe ser accesible públicamente. Puedes usar `ngrok` para exponer temporalmente tu `vulnerable-api`, pero **toma precauciones**.
+
+#### 1. Preparar la API (Seguridad)
+Por defecto, la API corre en modo DEBUG, lo que permite ejecución remota de código (RCE). Antes de exponerla, **desactiva el modo debug**:
+
+1. Edita `docker-compose.yml`:
+   ```yaml
+   workshop_vulnerable_api:
+     environment:
+       - FLASK_DEBUG=false  # <--- Añadir esto
+   ```
+2. Reinicia el contenedor:
+   ```bash
+   docker-compose up -d --force-recreate workshop_vulnerable_api
+   ```
+
+#### 2. Lanzar Ngrok
+Expone el puerto 5000:
+
+```bash
+ngrok http 5000
+# Copia la URL generada (ej: https://a1b2c3d4.ngrok-free.app)
+```
+
+#### 3. Actualizar el Script de Ataque
+Modifica `proxy_attack.py` (o `aws_gateway_attack.py`) para atacar tu dominio ngrok en lugar de `http://vulnerable-api:5000`.
+
+> [!CAUTION]
+> **Detén ngrok inmediatamente** al terminar el ejercicio. No dejes servicios vulnerables expuestos innecesariamente.
+
 
 ---
 

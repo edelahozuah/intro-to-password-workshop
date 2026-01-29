@@ -8,6 +8,7 @@ from flask import Flask, request, jsonify
 import json
 import hashlib
 from datetime import datetime
+import os
 
 app = Flask(__name__)
 
@@ -196,14 +197,13 @@ def stats():
         'blocked_ips_count': len(BLOCKED_IPS)
     })
 
-if __name__ == '__main__':
-    print("=" * 60)
-    print("Vulnerable API Server")
-    print("=" * 60)
-    print("WARNING: This API is intentionally insecure!")
-    print("For educational purposes only.")
-    print("=" * 60)
-    print(f"Total users loaded: {len(users)}")
-    print("=" * 60)
+    # Configuración de Debug: Por defecto True para desarrollo, pero False si se expone
+    # ¡IMPORTANTE! Nunca exponer con debug=True a Internet (RCE risk)
+    debug_mode = os.environ.get('FLASK_DEBUG', 'True').lower() == 'true'
     
-    app.run(host='0.0.0.0', port=5000, debug=True)
+    if debug_mode:
+        print("WARNING: Debug mode is ON. Do NOT expose to Internet.")
+    else:
+        print("INFO: Debug mode is OFF. Safer for exposure.")
+
+    app.run(host='0.0.0.0', port=5000, debug=debug_mode)
