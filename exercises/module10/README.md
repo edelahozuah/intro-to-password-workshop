@@ -177,7 +177,21 @@ A diferencia de los SMS/TOTP, WebAuthn vincula criptográficamente el login con 
 1. **Practica** en plataformas como [HackTheBox](https://hackthebox.com), [TryHackMe](https://tryhackme.com)
 2. **Certifícate**: CEH, OSCP, GPEN, GIAC
 3. **Participa** en CTFs (Capture The Flag)
-4. **Contribuye** a la comunidad open source de seguridad
+4.  **Contribuye** a la comunidad open source de seguridad
+
+### 🚀 Carrera Profesional
+Has adquirido habilidades fundamentales para roles como:
+- **Penetration Tester**: Evaluando seguridad ofensiva.
+- **SOC Analyst**: Detectando amenazas (Blue Team).
+- **Security Engineer**: Diseñando sistemas seguros (2FA, hashing).
+
+**Certificaciones Recomendadas**:
+*   **eJPT** (Junior Penetration Tester) - *Ideal para empezar*
+*   **CEH** (Certified Ethical Hacker)
+*   **OSCP** (Offensive Security Certified Professional) - *Nivel avanzado*
+*   **CompTIA Security+** - *Fundamentos*
+
+¡Sigue aprendiendo y hacking ético! 🏴‍☠️
 
 ---
 

@@ -9,6 +9,8 @@
 - Comprender y aplicar conceptos de **Conditional Access**
 - Analizar logs JSON con `jq` para detectar viajes imposibles y dispositivos no conformes
 
+> **🛡️ vs 🥷**: En este módulo aprenderás a **detectar** estas anomalías. En el **[Módulo 9 (Evasión)](../module9/README.md)**, verás cómo los atacantes utilizan *Proxies y Rotación de IPs* para intentar evadir estas reglas. Es vital conocer ambas caras de la moneda.
+
 ## 📖 Teoría
 
 ### ¿Qué buscan los defensores (Blue Team)?
@@ -144,8 +146,6 @@ cat ad_signin_logs.json | jq '.[] | select(.status=="success" and .is_compliant=
 2.  **Reset Password**: Obligar al usuario a cambiar contraseña.
 3.  **Revoke Sessions**: Matar sesiones activas (cookies).
 4.  **MFA Challenge**: Si es sospechoso pero no seguro, pedir 2FA.
-
----
 
 ---
 

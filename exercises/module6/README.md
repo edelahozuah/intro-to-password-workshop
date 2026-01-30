@@ -321,6 +321,9 @@ En entornos reales, probar 100 credenciales desde 1 IP bloqueará tu IP.
 
 *Nota: CredMaster es avanzado y requiere cuenta AWS, pero es vital conocer su existencia.*
 
+> **➡️ Siguiente Nivel**: Aprenderás a configurar y usar rotación de IPs en el **[Módulo 9](../module9/README.md)**.
+
+
 ---
 
 ## 📊 Análisis de Breach Data

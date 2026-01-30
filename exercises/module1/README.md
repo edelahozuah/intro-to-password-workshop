@@ -26,7 +26,28 @@ Un **hash criptográfico** es una función matemática que convierte cualquier e
 | MD5 | 128 bits | ⛔ Roto | Evitar |
 | SHA-1 | 160 bits | ⚠️ Débil | Deprecado |
 | SHA-256 | 256 bits | ✅ Seguro | Recomendado |
-| bcrypt | Variable | ✅ Seguro | Contraseñas |
+| bcrypt | Variable | ✅ Seguro | Contraseñas (Lento por diseño) |
+| Argon2 | Variable | 🛡️ Estado del Arte | Ganador PHC |
+
+### Conceptos Clave
+
+#### 1. Salting (Sal Criptográfica) 🧂
+Un **Salt** es un valor aleatorio único añadido a cada contraseña antes de hashearla.
+`Hash = SHA256(Password + Salt)`
+
+**¿Por qué es vital?**
+- Evita que dos usuarios con la misma contraseña tengan el mismo hash.
+- Defiende contra los ataques de **Rainbow Tables**.
+
+#### 2. Rainbow Tables 🌈
+Son tablas pre-computadas gigantescas que permiten revertir hashes en tiempo constante.
+- **Sin Salt**: `md5("123456")` es siempre igual. Una Rainbow Table lo encuentra al instante.
+- **Con Salt**: El atacante tendría que generar una tabla nueva para *cada* salt único. Hace el ataque impracticable.
+
+#### 3. Factor de Trabajo (Work Factor) 🏋️
+Algoritmos como **bcrypt** o **Argon2** son "lentos por diseño". Se configuran para tardar (ej: 0.5 segundos) en calcular *un solo* hash.
+- **Impacto**: Si un atacante prueba 100M de MD5s por segundo, con bcrypt quizás solo pueda probar 200 por segundo.
+- Esto compra tiempo valioso en caso de filtración.
 
 ### Ataques de fuerza bruta
 
@@ -85,6 +106,12 @@ hashcat -m [tipo_hash] -a [modo_ataque] archivo_hashes mascara
 ?l  # Minúscula (a-z)
 ?u  # Mayúscula (A-Z)
 ?a  # Todos los caracteres
+
+# Tip para sesiones largas
+# Guardar progreso:
+hashcat ... --session my_session
+# Restaurar si se interrumpe:
+hashcat --session my_session --restore
 ```
 
 ## 💻 Ejercicios Prácticos

@@ -10,6 +10,19 @@ Tu objetivo es **auditar** esta base de datos y recuperar la mayor cantidad posi
 *   `raw-md5.hashes.txt.gz`: Lista de hashes comprimida (3.5M). 
     > **Nota**: Descomprimir antes de usar: `gzip -d raw-md5.hashes.txt.gz`
 
+## 🚀 Primeros Pasos
+Para no frustrarte al inicio, te recomendamos este flujo:
+
+1.  **Verificación**: Comprueba el formato de los hashes.
+    ```bash
+    head raw-md5.hashes.txt
+    ```
+2.  **Prueba Rápida**: Lanza un ataque básico con RockYou para confirmar que todo funciona.
+    ```bash
+    hashcat -m 0 -a 0 raw-md5.hashes.txt /wordlists/seclists/rockyou.txt --show
+    ```
+    *Si ves contraseñas, ¡tu entorno funciona! Ahora ve a por todas.*
+
 ## 🎯 Objetivos
 1.  **Descomprimir** el fichero.
 2.  **Identificar** el tipo de hash (confirmado: MD5).

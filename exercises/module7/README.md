@@ -412,21 +412,4 @@ Has completado este módulo cuando:
 
 🔙 [Anterior: Módulo 6 - Credential Stuffing](../module6/README.md) | 🔜 [Siguiente: Módulo 8 - Detección y Defensa](../module8/README.md)
 
----
 
-## 🎓 ¿Qué sigue?
-
-Has completado el análisis de stealers. Ahora pasarás a la perspectiva del defensor en el **Módulo 8**.
-
-Has aprendido:
-- ✅ Cracking offline (fuerza bruta, diccionarios, reglas)
-- ✅ Perfiling con CUPP
-- ✅ Ataques online con Hydra
-- ✅ Credential stuffing
-- ✅ Análisis de stealers y MITRE ATT&CK
-
-**Próximos pasos**:
-1. Practica en plataformas como **HackTheBox**, **TryHackMe**
-2. Obtén certificaciones: **CEH**, **OSCP**, **GPEN**
-3. Participa en **CTFs**
-4. Contribuye a la comunidad de seguridad
