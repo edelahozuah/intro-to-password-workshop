@@ -10,9 +10,10 @@ import random
 urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
 
 # Configuración de PlainProxies (vía Variables de Entorno)
+# Hint: El username puede incluir targeting, ej: "USER-country-ES"
 PP_USERNAME = os.getenv("PP_USERNAME")
 PP_PASSWORD = os.getenv("PP_PASSWORD")
-PP_HOST = os.getenv("PP_HOST", "ipv4.plainproxies.com") # Host habitual
+PP_HOST = os.getenv("PP_HOST", "res-v2.pr.plainproxies.com") 
 PP_PORT = os.getenv("PP_PORT", "8080")
 
 if not PP_USERNAME or not PP_PASSWORD:

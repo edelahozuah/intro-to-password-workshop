@@ -159,15 +159,15 @@ El script creará automáticamente una API en tu cuenta AWS, lanzará peticiones
 Si utilizas **PlainProxies.com**, usa el script alternativo `plainproxies_attack.py`.
 
 ```bash
-docker-compose exec -e PP_USERNAME='...' \
+docker-compose exec -e PP_USERNAME='USER_ID-country-ES' \
                     -e PP_PASSWORD='...' \
-                    -e PP_HOST='ipv4.plainproxies.com' \
+                    -e PP_HOST='res-v2.pr.plainproxies.com' \
                     -e PP_PORT='8080' \
                     -e TARGET_URL='https://...' \
                     attacker python3 /exercises/module9/plainproxies_attack.py
 ```
 
-> **Nota**: Este script asume que el proveedor rota la IP automáticamente en cada petición (puerto de rotación) o que te asigna una nueva conexión por request.
+> **Nota**: PlainProxies permite filtrar por país añadiendo `-country-XX` al usuario (ej: `-country-ES` para España).
 
 >
 > **⚠️ Usuarios de Trial**: Si tienes una cuenta Bright Data sin verificar (Trial), bloquearán el acceso a dominios `.dev` o `.ngrok`. Usa `DEMO_MODE=true` para probar la rotación contra `lumtest.com`.
