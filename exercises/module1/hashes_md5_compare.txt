@@ -1,0 +1,7 @@
+# Hashes MD5 de las mismas contraseñas para comparación
+# Passwords: 1234, password, admin, 123456
+# Generados con: echo -n "password" | md5sum
+81dc9bdb52d04dc20036dbd8313ed055
+5f4dcc3b5aa765d61d8327deb882cf99
+21232f297a57a5a743894a0e4a801fc3
+e10adc3949ba59abbe56e057f20f883e

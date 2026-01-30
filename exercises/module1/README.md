@@ -174,7 +174,7 @@ En un escenario real, antes de la fuerza bruta pura, usaríamos listas estadíst
 
 ## 🧪 Experimentos Adicionales
 
-### Comparar velocidad de algoritmos
+### Comparar velocidad de algoritmos (Benchmark)
 
 ```bash
 # Benchmark de Hashcat
@@ -185,6 +185,59 @@ hashcat -b -m 3200   # bcrypt
 ```
 
 **Observa**: MD5 es mucho más rápido que bcrypt. ¿Por qué esto importa para la seguridad?
+
+---
+
+### Ejercicio Especial: MD5 vs Bcrypt en la Práctica 🔬
+
+Este ejercicio demuestra por qué **bcrypt es más seguro** aunque las contraseñas sean las mismas.
+
+#### Archivos incluidos
+```
+hashes_md5_compare.txt    → 4 hashes MD5 (1234, password, admin, 123456)
+hashes_bcrypt.txt         → Los MISMOS 4 passwords en bcrypt (cost=10)
+```
+
+#### Paso 1: Crackear MD5 (instantáneo)
+
+```bash
+cd /exercises/module1
+
+# Tiempo de cracking MD5
+time hashcat -m 0 -a 3 hashes_md5_compare.txt ?a?a?a?a?a?a --force -O
+
+# Resultado esperado: < 1 segundo para encontrar las 4 contraseñas
+```
+
+#### Paso 2: Intentar crackear Bcrypt (muy lento)
+
+```bash
+# Mismo ataque contra bcrypt
+time hashcat -m 3200 -a 3 hashes_bcrypt.txt ?a?a?a?a --force
+
+# Resultado esperado: Después de varios MINUTOS, 
+# quizás solo encuentres 1-2 contraseñas (las más cortas)
+```
+
+> [!WARNING]
+> **Diferencia esperada**: El ataque que tardó **< 1 segundo** en MD5 puede tardar **horas** en bcrypt con las mismas contraseñas.
+
+#### ¿Por qué ocurre esto?
+
+| Algoritmo | Velocidad típica | 4 dígitos (10,000 combos) |
+|:----------|:-----------------|:--------------------------|
+| **MD5** | ~10,000 MH/s (GPU) | < 0.001 segundos |
+| **Bcrypt (cost=10)** | ~25 KH/s (GPU) | ~7 minutos |
+
+Bcrypt es **400,000 veces más lento** que MD5. Esto es **intencional**: cada intento le cuesta tiempo al atacante.
+
+#### Conclusión del Ejercicio
+
+Aunque uses la misma contraseña débil ("1234"):
+- Con **MD5**: Un atacante la encuentra en milisegundos.
+- Con **Bcrypt**: Un atacante necesita minutos u horas.
+
+Esto demuestra por qué la **elección del algoritmo de hash** es tan importante como la fortaleza de la contraseña.
 
 ### Calcular tiempo estimado
 

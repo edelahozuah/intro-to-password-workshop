@@ -1,0 +1,6 @@
+# Hashes bcrypt (cost=10) para comparación de velocidad
+# Passwords: 1234, password, admin, 123456
+$2b$10$ZVCznDNv1pV/0V7UHq70kuZtcrCpIDj9X.2S9V/kuhtMehG8gMzY.
+$2b$10$Y1/KOq9XY9gjejJSvRsHKuDDxY.0iT8Lk0ZmlMvTjfL.dqqMxmMnu
+$2b$10$bTCa/2B7TT6VQdpleMZHQua52cVvQnW4JagDxlBrnnvsJN9YMihwi
+$2b$10$aFIKtIyTjd/kMHhxdRpHEOwWnfGROar/lAcAwDwaj5xmbS3OtEMPq
