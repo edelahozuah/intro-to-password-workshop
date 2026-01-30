@@ -155,6 +155,8 @@ python3 aws_gateway_attack.py
 El script creará automáticamente una API en tu cuenta AWS, lanzará peticiones a través de ella (rotando IPs), y luego la borrará.
 
 > **Nota**: Esta técnica requiere que el objetivo sea accesible desde Internet (IP Pública). No funcionará contra nuestra `vulnerable-api` local dockerizada a menos que expongas tu puerto local a internet.
+>
+> **⚠️ Usuarios de Trial**: Si tienes una cuenta Bright Data sin verificar (Trial), bloquearán el acceso a dominios `.dev` o `.ngrok`. Usa `DEMO_MODE=true` para probar la rotación contra `lumtest.com`.
 
 ### 🏙️ Técnica: Bright Data (Proxies Residenciales)
 
