@@ -2,6 +2,11 @@
 
 > ⏱️ **Tiempo estimado**: 45 minutos
 
+```bash
+# Antes de comenzar, sitúate en el directorio del módulo:
+cd /exercises/module8
+```
+
 ## 🎯 Objetivos de Aprendizaje
 
 - Detectar ataques de fuerza bruta y spraying en logs de sistema

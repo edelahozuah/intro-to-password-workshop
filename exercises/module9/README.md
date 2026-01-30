@@ -2,6 +2,11 @@
 
 > ⏱️ **Tiempo estimado**: 30 minutos
 
+```bash
+# Antes de comenzar, sitúate en el directorio del módulo:
+cd /exercises/module9
+```
+
 ## 🎯 Objetivos de Aprendizaje
 
 -   Comprender las técnicas de defensa: **Rate Limiting** y **Bloqueo de IPs**.

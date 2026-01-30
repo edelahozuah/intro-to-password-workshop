@@ -1,5 +1,12 @@
 # 🏆 Final Challenge: Real World Hash Crack
 
+> ⏱️ **Tiempo estimado**: 60+ minutos
+
+```bash
+# Antes de comenzar, sitúate en el directorio del desafío:
+cd /exercises/final-challenge
+```
+
 ¡Bienvenido al desafío final!
 
 Has recibido una filtración de datos real (`raw-md5.hashes.txt`) que contiene aproximadamente **3.5 millones de hashes MD5**.

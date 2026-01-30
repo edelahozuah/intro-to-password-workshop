@@ -2,6 +2,11 @@
 
 > ⏱️ **Tiempo estimado**: 45 minutos
 
+```bash
+# Antes de comenzar, sitúate en el directorio del módulo:
+cd /exercises/module4
+```
+
 ## 🎯 Objetivos de Aprendizaje
 
 - Comprender cómo funcionan las reglas de mutación

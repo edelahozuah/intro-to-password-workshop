@@ -2,6 +2,11 @@
 
 > ⏱️ **Tiempo estimado**: 30 minutos
 
+```bash
+# Antes de comenzar, sitúate en el directorio del módulo:
+cd /exercises/module8b
+```
+
 ## 🎯 Objetivos de Aprendizaje
 
 - Comprender cómo funciona Fail2Ban

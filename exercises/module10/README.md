@@ -2,6 +2,11 @@
 
 > ⏱️ **Tiempo estimado**: 60 minutos
 
+```bash
+# Antes de comenzar, sitúate en el directorio del módulo:
+cd /exercises/module10
+```
+
 ## 🎯 Objetivo de Aprendizaje
 Entender la amenaza de los ataques de **Reverse Proxy Phishing** capaces de eludir la autenticación de doble factor (2FA) capturando no solo credenciales, sino también tokens SMS/TOTP y cookies de sesión.
 

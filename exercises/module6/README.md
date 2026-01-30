@@ -2,6 +2,11 @@
 
 > ⏱️ **Tiempo estimado**: 60 minutos
 
+```bash
+# Antes de comenzar, sitúate en el directorio del módulo:
+cd /exercises/module6
+```
+
 ## 🎯 Objetivos de Aprendizaje
 
 - Comprender qué es credential stuffing y por qué funciona

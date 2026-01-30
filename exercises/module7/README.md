@@ -2,6 +2,11 @@
 
 > ⏱️ **Tiempo estimado**: 45 minutos
 
+```bash
+# Antes de comenzar, sitúate en el directorio del módulo:
+cd /exercises/module7
+```
+
 ## 🎯 Objetivos de Aprendizaje
 
 - Comprender cómo funcionan los info-stealers

@@ -1,6 +1,11 @@
 # Módulo 2: Ataques con Diccionario
 
-## 🎯 Objetivos de Aprendizaje
+> ⏱️ **Tiempo estimado**: 45 minutos
+
+```bash
+# Antes de comenzar, sitúate en el directorio del módulo:
+cd /exercises/module2
+```
 
 - Comprender por qué los diccionarios son efectivos
 - Utilizar rockyou.txt y otros wordlists

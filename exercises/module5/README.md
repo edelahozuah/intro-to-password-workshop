@@ -2,6 +2,11 @@
 
 > ⏱️ **Tiempo estimado**: 60 minutos
 
+```bash
+# Antes de comenzar, sitúate en el directorio del módulo:
+cd /exercises/module5
+```
+
 ## 🎯 Objetivos de Aprendizaje
 
 - Diferenciar ataques offline vs online
