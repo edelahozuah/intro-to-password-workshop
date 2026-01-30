@@ -14,16 +14,16 @@
     flowchart LR
         A["🦹 Attacker"]
         P["🧅 Tor/Proxy"]
-        T["✅ Vulnerable API<br/>(with Rate Limit)"]
+        T["✅ Vulnerable API<br/>Rate Limited"]
         
         %% Direct Attack (Blocked)
-        A -->|Direct Request (IP X)| T
+        A -->|Direct Request IP X| T
         T -.->|⛔ 429 Blocked| A
         
         %% Proxy Attack (Bypass)
         A -->|SOCKS5| P
-        P -->|Request (IP Y)| T
-        P -->|Request (IP Z)| T
+        P -->|Request IP Y| T
+        P -->|Request IP Z| T
         
         style A fill:#f9f,stroke:#333
         style T fill:#bbf,stroke:#333
