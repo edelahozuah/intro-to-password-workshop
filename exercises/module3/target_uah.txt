@@ -1,0 +1,61 @@
+# ============================================================
+# FICHA OSINT: María García López (OBJETIVO FICTICIO)
+# Universidad de Alcalá - Ejercicio de Práctica
+# ============================================================
+
+# --- INFORMACIÓN PERSONAL ---
+nombre: Maria
+apellido: Garcia
+apellido2: Lopez
+apodo: Mari
+fecha_nacimiento: 15/03/1995
+lugar_nacimiento: Alcala de Henares
+
+# --- INFORMACIÓN ACADÉMICA/PROFESIONAL ---
+universidad: UAH
+campus: Politecnico
+departamento: Ciencias de la Computacion
+email: maria.garcial@uah.es
+año_graduacion: 2017
+carrera: Ingenieria Informatica
+
+# --- REDES SOCIALES (Ficticias) ---
+twitter: @mariagarciadev
+instagram: maria.garcia.95
+linkedin: maria-garcia-lopez-uah
+github: mgarcialopez
+
+# --- RELACIONES ---
+pareja: Carlos
+mascota: Luna (gata)
+mascota2: Pixel (perro)
+
+# --- INTERESES ---
+hobby1: programacion
+hobby2: viajes
+hobby3: fotografia
+equipo_futbol: Atleti
+serie_favorita: BreakingBad
+videojuego: Zelda
+
+# --- PALABRAS CLAVE UAH ---
+keywords: uah,alcala,henares,cisne,politecnico,computacion,informatica,complutense,rectoral
+
+# --- FECHAS IMPORTANTES ---
+fundacion_uah: 1499
+codigo_postal: 28801
+
+# ============================================================
+# INSTRUCCIONES DE USO:
+# 
+# 1. Con CUPP (modo interactivo):
+#    python3 /opt/cupp/cupp.py -i
+#    (Introducir datos manualmente)
+#
+# 2. Crear archivo base para Pydictor:
+#    grep -v "^#" target_uah.txt | cut -d: -f2 | tr -d ' ' > base_uah.txt
+#
+# 3. Palabras clave para CeWL:
+#    Las palabras extraídas del sitio web UAH se combinarán
+#    con este perfil usando reglas de Hashcat.
+# ============================================================

@@ -178,6 +178,60 @@ echo "Carlos\nGarcia\nTechCorp\nRealMadrid" > /tmp/base.txt
 
 # Generar permutaciones con configuración específica
 # -len 8 16: longitud 8 a 16
+# ... (resto del ejemplo anterior)
+
+---
+
+### 🎓 Ejercicio Especial: Auditoría UAH
+
+Vamos a simular una auditoría ética para la **Universidad de Alcalá**.
+
+#### Parte 1: Perfilado con CUPP (Mascotas y Fechas)
+
+Hemos creado una ficha de un "objetivo ficticio" basada en datos que podrían encontrarse en redes sociales.
+
+1.  **Revisa la ficha del objetivo**:
+    ```bash
+    cat /exercises/module3/target_uah.txt
+    ```
+
+2.  **Genera un diccionario personalizado**:
+    Usa `cupp` en modo interactivo e introduce los datos de **María García López** (ver ficha).
+
+    ```bash
+    python3 /opt/cupp/cupp.py -i
+    ```
+    
+    *Consejos para el input:*
+    -   **Keywords**: uah,alcala,politecnico,cisne
+    -   **Birthday**: 15031995
+    -   **Partner**: Carlos
+    -   **Pet**: Luna
+    -   **Leet mode**: Yes (¡Siempre!)
+
+3.  **Verifica el resultado**:
+    ¿Cuántas contraseñas se generaron? ¿Ves combinaciones como `Luna123` o `Alcala2024`?
+
+#### Parte 2: Contexto Web con CeWL 🕷️
+
+Las contraseñas corporativas suelen contener términos relacionados con la institución. Usaremos **CeWL** para extraer palabras clave de la web pública de la UAH.
+
+> [!CAUTION]
+> **Ética**: Solo escaneamos la página principal (`-d 1`). No hagas crawling profundo de sitios que no te pertenecen sin autorización explícita.
+
+```bash
+# Extraer palabras de la web de la UAH
+# -d 1: Profundidad 1 (solo la home)
+# -m 5: Mínimo 5 letras (evita "de", "la", "en")
+# -w uah_context.txt: Guardar en archivo
+
+cewl -d 1 -m 5 https://www.uah.es -w uah_context.txt
+
+# Ver las palabras más frecuentes
+sort uah_context.txt | uniq -c | sort -nr | head -n 20
+```
+
+**Reflexión**: ¿Cuántas de estas palabras podrían ser parte de una contraseña débil? (ej: `Estudios2024`, `Investigacion!`, `Futuro_UAH`).
 # --head: Prefijos comunes
 python3 pydictor.py -base /tmp/base.txt -len 8 16 -o /exercises/module3/pydictor_words.txt
 ```
