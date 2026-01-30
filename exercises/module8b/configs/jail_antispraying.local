@@ -1,0 +1,19 @@
+# Configuración ANTI-SPRAYING
+# ===========================
+# Optimizada para detectar ataques de Password Spraying.
+# Ventana de tiempo larga para capturar intentos distribuidos.
+
+[sshd]
+enabled = true
+port = ssh
+filter = sshd
+logpath = /var/log/auth.log
+
+# Permite más intentos (spraying es lento)
+maxretry = 10
+
+# Baneo de 24 horas (muy severo)
+bantime = 86400
+
+# Ventana de 1 hora completa
+findtime = 3600

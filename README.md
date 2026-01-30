@@ -23,6 +23,7 @@ Un taller completo y reproducible diseñado para estudiantes de nivel iniciació
 | **[Módulo 6](exercises/module6/README.md)** | **Credential Stuffing** | 60 min | Automatización de ataques con credenciales filtradas. |
 | **[Módulo 7](exercises/module7/README.md)** | **Stealers** | 45 min | Análisis forense de logs de info-stealers (MITRE ATT&CK). |
 | **[Módulo 8](exercises/module8/README.md)** | **Blue Team** | 45 min | Análisis de logs, detección y Conditional Access. |
+| **[Módulo 8b](exercises/module8b/README.md)** | **Fail2Ban** | 30 min | Práctica de configuración y gestión de Fail2Ban. |
 | **[Módulo 9](exercises/module9/README.md)** | **Evasión** | 30 min | Rotación de IPs (Tor, Cloud, Proxies Residenciales). |
 | **[Módulo 10](exercises/module10/README.md)** | **Phishing 2FA** | 60 min | Bypass de 2FA usando **Modlishka**. |
 

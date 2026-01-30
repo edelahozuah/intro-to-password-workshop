@@ -1,0 +1,19 @@
+# Configuración AGRESIVA
+# ======================
+# Para servidores críticos que requieren máxima protección.
+# Bloquea rápidamente pero puede afectar usuarios legítimos.
+
+[sshd]
+enabled = true
+port = ssh
+filter = sshd
+logpath = /var/log/auth.log
+
+# Solo 3 intentos permitidos
+maxretry = 3
+
+# Baneo de 1 hora
+bantime = 3600
+
+# Ventana de 5 minutos
+findtime = 300

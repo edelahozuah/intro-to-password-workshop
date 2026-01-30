@@ -1,0 +1,19 @@
+# Configuración BALANCEADA
+# ========================
+# Equilibrio entre seguridad y usabilidad.
+# Recomendada para la mayoría de entornos.
+
+[sshd]
+enabled = true
+port = ssh
+filter = sshd
+logpath = /var/log/auth.log
+
+# 5 intentos antes de bloqueo
+maxretry = 5
+
+# Baneo de 30 minutos
+bantime = 1800
+
+# Ventana de 10 minutos
+findtime = 600

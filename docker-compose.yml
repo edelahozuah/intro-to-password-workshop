@@ -38,6 +38,18 @@ services:
     networks:
       - lab-network
 
+  # Módulo 8b: SSH con Fail2Ban (Práctica de Defensa)
+  ssh-protected:
+    build: ./exercises/module8b/ssh-protected
+    container_name: workshop_ssh_protected
+    hostname: ssh-protected
+    ports:
+      - "2223:22"
+    cap_add:
+      - NET_ADMIN # Necesario para iptables
+    networks:
+      - lab-network
+
   # DVWA para ataques web
   dvwa:
     image: vulnerables/web-dvwa:latest

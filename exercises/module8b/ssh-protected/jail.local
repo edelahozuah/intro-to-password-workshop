@@ -1,0 +1,35 @@
+# Fail2Ban - Configuración Base del Taller
+# ==========================================
+# Esta es la configuración inicial. Los estudiantes
+# pueden modificarla para experimentar.
+
+[DEFAULT]
+# Ignorar IPs locales (descomentar si es necesario)
+# ignoreip = 127.0.0.1/8 ::1
+
+# Tiempo de baneo por defecto (segundos)
+bantime = 600
+
+# Ventana de tiempo para contar intentos (segundos)
+findtime = 300
+
+# Número máximo de intentos antes de banear
+maxretry = 3
+
+# Backend para monitorear logs
+backend = auto
+
+# Acción por defecto (solo bannear IP)
+banaction = iptables-multiport
+
+# ==========================================
+# JAIL: SSH
+# ==========================================
+[sshd]
+enabled = true
+port = ssh
+filter = sshd
+logpath = /var/log/auth.log
+maxretry = 3
+bantime = 600
+findtime = 300

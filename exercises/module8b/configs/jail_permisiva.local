@@ -1,0 +1,19 @@
+# Configuración PERMISIVA (Testing)
+# ==================================
+# Muy tolerante. Útil para troubleshooting o demos.
+# NO USAR EN PRODUCCIÓN.
+
+[sshd]
+enabled = true
+port = ssh
+filter = sshd
+logpath = /var/log/auth.log
+
+# 20 intentos (muy permisivo)
+maxretry = 20
+
+# Baneo de solo 2 minutos
+bantime = 120
+
+# Ventana de 10 minutos
+findtime = 600
