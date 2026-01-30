@@ -104,3 +104,79 @@
 2026-01-30 09:00:39.586844756  Failed password for testuser from 172.19.0.6 port 58554 ssh2
 2026-01-30 09:00:39.599057631  maximum authentication attempts exceeded for testuser from 172.19.0.6 port 58554 ssh2 [preauth]
 2026-01-30 09:00:39.599061006  Disconnecting authenticating user testuser 172.19.0.6 port 58554: Too many authentication failures [preauth]
+2026-01-30 09:01:58.174697417  Failed password for testuser from 172.19.0.6 port 40544 ssh2
+2026-01-30 09:01:59.676984668  Connection closed by authenticating user testuser 172.19.0.6 port 40544 [preauth]
+2026-01-30 09:02:05.961751296  Received disconnect from 172.19.0.6 port 54544:11: Bye Bye [preauth]
+2026-01-30 09:02:05.961755171  Disconnected from authenticating user testuser 172.19.0.6 port 54544 [preauth]
+2026-01-30 09:02:06.254589837  Failed password for testuser from 172.19.0.6 port 54546 ssh2
+2026-01-30 09:02:06.258433546  Failed password for testuser from 172.19.0.6 port 54594 ssh2
+2026-01-30 09:02:06.261786004  Failed password for testuser from 172.19.0.6 port 54548 ssh2
+2026-01-30 09:02:06.264203921  Failed password for testuser from 172.19.0.6 port 54578 ssh2
+2026-01-30 09:02:06.272601462  Failed password for testuser from 172.19.0.6 port 54548 ssh2
+2026-01-30 09:02:06.272603254  Failed password for testuser from 172.19.0.6 port 54594 ssh2
+2026-01-30 09:02:06.272714837  Failed password for testuser from 172.19.0.6 port 54578 ssh2
+2026-01-30 09:02:06.273171712  Failed password for testuser from 172.19.0.6 port 54546 ssh2
+2026-01-30 09:02:06.284935712  Failed password for testuser from 172.19.0.6 port 54594 ssh2
+2026-01-30 09:02:06.286817587  Failed password for testuser from 172.19.0.6 port 54578 ssh2
+2026-01-30 09:02:06.286993754  Failed password for testuser from 172.19.0.6 port 54548 ssh2
+2026-01-30 09:02:06.287545504  Failed password for testuser from 172.19.0.6 port 54546 ssh2
+2026-01-30 09:02:06.298502879  Failed password for testuser from 172.19.0.6 port 54546 ssh2
+2026-01-30 09:02:06.301415962  Failed password for testuser from 172.19.0.6 port 54578 ssh2
+2026-01-30 09:02:06.301418879  Failed password for testuser from 172.19.0.6 port 54548 ssh2
+2026-01-30 09:02:06.304307671  Failed password for testuser from 172.19.0.6 port 54594 ssh2
+2026-01-30 09:02:06.307995629  Failed password for testuser from 172.19.0.6 port 54546 ssh2
+2026-01-30 09:02:06.318835879  Failed password for testuser from 172.19.0.6 port 54578 ssh2
+2026-01-30 09:02:06.322717046  Failed password for testuser from 172.19.0.6 port 54548 ssh2
+2026-01-30 09:02:06.322720629  Failed password for testuser from 172.19.0.6 port 54546 ssh2
+2026-01-30 09:02:06.323702379  Failed password for testuser from 172.19.0.6 port 54594 ssh2
+2026-01-30 09:02:06.323950879  maximum authentication attempts exceeded for testuser from 172.19.0.6 port 54548 ssh2 [preauth]
+2026-01-30 09:02:06.323952671  Disconnecting authenticating user testuser 172.19.0.6 port 54548: Too many authentication failures [preauth]
+2026-01-30 09:02:06.333291087  Failed password for testuser from 172.19.0.6 port 54578 ssh2
+2026-01-30 09:02:06.346751462  maximum authentication attempts exceeded for testuser from 172.19.0.6 port 54546 ssh2 [preauth]
+2026-01-30 09:02:06.346755504  Disconnecting authenticating user testuser 172.19.0.6 port 54546: Too many authentication failures [preauth]
+2026-01-30 09:02:06.346914254  maximum authentication attempts exceeded for testuser from 172.19.0.6 port 54578 ssh2 [preauth]
+2026-01-30 09:02:06.346916004  Disconnecting authenticating user testuser 172.19.0.6 port 54578: Too many authentication failures [preauth]
+2026-01-30 09:02:06.351437796  Failed password for testuser from 172.19.0.6 port 54594 ssh2
+2026-01-30 09:02:06.355882171  maximum authentication attempts exceeded for testuser from 172.19.0.6 port 54594 ssh2 [preauth]
+2026-01-30 09:02:06.355885546  Disconnecting authenticating user testuser 172.19.0.6 port 54594: Too many authentication failures [preauth]
+2026-01-30 09:02:06.356651254  srclimit_penalise: 172.19.0.6/32: activating ipv4 penalty of 20 seconds for penalty: failed authentication
+2026-01-30 09:02:06.408186879  Failed password for testuser from 172.19.0.6 port 54606 ssh2
+2026-01-30 09:02:06.417052837  Failed password for testuser from 172.19.0.6 port 54606 ssh2
+2026-01-30 09:02:06.418022379  Failed password for testuser from 172.19.0.6 port 54620 ssh2
+2026-01-30 09:02:06.418809421  Failed password for testuser from 172.19.0.6 port 54610 ssh2
+2026-01-30 09:02:06.425783129  Failed password for testuser from 172.19.0.6 port 54624 ssh2
+2026-01-30 09:02:06.427389754  Failed password for testuser from 172.19.0.6 port 54606 ssh2
+2026-01-30 09:02:06.427453379  Failed password for testuser from 172.19.0.6 port 54620 ssh2
+2026-01-30 09:02:06.438663421  Failed password for testuser from 172.19.0.6 port 54620 ssh2
+2026-01-30 09:02:06.438665879  Failed password for testuser from 172.19.0.6 port 54624 ssh2
+2026-01-30 09:02:06.438874171  Failed password for testuser from 172.19.0.6 port 54606 ssh2
+2026-01-30 09:02:06.439203421  Failed password for testuser from 172.19.0.6 port 54610 ssh2
+2026-01-30 09:02:06.449593004  Failed password for testuser from 172.19.0.6 port 54606 ssh2
+2026-01-30 09:02:06.449595587  Failed password for testuser from 172.19.0.6 port 54620 ssh2
+2026-01-30 09:02:06.449855754  Failed password for testuser from 172.19.0.6 port 54624 ssh2
+2026-01-30 09:02:06.449856921  Failed password for testuser from 172.19.0.6 port 54610 ssh2
+2026-01-30 09:02:06.460691463  Failed password for testuser from 172.19.0.6 port 54610 ssh2
+2026-01-30 09:02:06.460840213  Failed password for testuser from 172.19.0.6 port 54620 ssh2
+2026-01-30 09:02:06.460934254  Failed password for testuser from 172.19.0.6 port 54606 ssh2
+2026-01-30 09:02:06.461269463  Failed password for testuser from 172.19.0.6 port 54624 ssh2
+2026-01-30 09:02:06.467360838  maximum authentication attempts exceeded for testuser from 172.19.0.6 port 54606 ssh2 [preauth]
+2026-01-30 09:02:06.467363088  Disconnecting authenticating user testuser 172.19.0.6 port 54606: Too many authentication failures [preauth]
+2026-01-30 09:02:06.467836921  drop connection #4 from [172.19.0.6]:54640 on [172.19.0.2]:2222 penalty: failed authentication
+2026-01-30 09:02:06.467839171  PerSourcePenalties logging rate-limited: additional 17 connections dropped
+2026-01-30 09:02:06.471555796  Failed password for testuser from 172.19.0.6 port 54620 ssh2
+2026-01-30 09:02:06.471676213  Failed password for testuser from 172.19.0.6 port 54624 ssh2
+2026-01-30 09:02:06.471807338  Failed password for testuser from 172.19.0.6 port 54610 ssh2
+2026-01-30 09:02:06.477202088  maximum authentication attempts exceeded for testuser from 172.19.0.6 port 54620 ssh2 [preauth]
+2026-01-30 09:02:06.477203338  Disconnecting authenticating user testuser 172.19.0.6 port 54620: Too many authentication failures [preauth]
+2026-01-30 09:02:06.477448046  drop connection #3 from [172.19.0.6]:54646 on [172.19.0.2]:2222 penalty: failed authentication
+2026-01-30 09:02:06.492946754  drop connection #2 from [172.19.0.6]:54660 on [172.19.0.2]:2222 penalty: failed authentication
+2026-01-30 09:02:06.495413838  Failed password for testuser from 172.19.0.6 port 54624 ssh2
+2026-01-30 09:02:06.495415629  Failed password for testuser from 172.19.0.6 port 54610 ssh2
+2026-01-30 09:02:06.500914379  maximum authentication attempts exceeded for testuser from 172.19.0.6 port 54624 ssh2 [preauth]
+2026-01-30 09:02:06.500916754  maximum authentication attempts exceeded for testuser from 172.19.0.6 port 54610 ssh2 [preauth]
+2026-01-30 09:02:06.500919463  Disconnecting authenticating user testuser 172.19.0.6 port 54624: Too many authentication failures [preauth]
+2026-01-30 09:02:06.500920421  Disconnecting authenticating user testuser 172.19.0.6 port 54610: Too many authentication failures [preauth]
+2026-01-30 09:02:06.501127338  drop connection #2 from [172.19.0.6]:54666 on [172.19.0.2]:2222 penalty: failed authentication
+2026-01-30 09:02:06.501182046  drop connection #2 from [172.19.0.6]:54678 on [172.19.0.2]:2222 penalty: failed authentication
+2026-01-30 09:02:06.503188963  drop connection #0 from [172.19.0.6]:54690 on [172.19.0.2]:2222 penalty: failed authentication
+2026-01-30 09:02:06.521065963  drop connection #0 from [172.19.0.6]:54718 on [172.19.0.2]:2222 penalty: failed authentication

