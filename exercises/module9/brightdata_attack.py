@@ -88,9 +88,21 @@ def attack():
                 r = requests.get("http://lumtest.com/myip.json", proxies=current_proxies, verify=False, timeout=15)
                 try:
                     ip_info = r.json()
-                    print(f"   🔄 IP Salida: {ip_info.get('ip')} (Pais: {ip_info.get('country')})")
+                    # Extraer datos estilo WHOIS del JSON de lumtest
+                    ip = ip_info.get('ip')
+                    country = ip_info.get('country')
+                    asn = ip_info.get('asn', {}).get('org_name', 'Unknown ASN')
+                    isp = ip_info.get('geo', {}).get('isp', 'Unknown ISP')
+                    
+                    print(f"   🔄 IP: {ip}")
+                    print(f"      🌍 País: {country}")
+                    print(f"      🏢 ISP/ASN: {asn}")
                 except:
                     print(f"   📄 Resp: {r.text.strip()}")
+                
+                # Pausa de 10 segundos solicitada
+                print("   ⏳ Esperando 10s para siguiente petición...")
+                time.sleep(10)
             else:
                 # Normal Attack Mode
                 payload = {
