@@ -80,6 +80,7 @@ services:
       - lab-network
     environment:
       - FLASK_ENV=development
+      - PYTHONUNBUFFERED=1
     volumes:
       - ./vulnerable-api:/app
 
