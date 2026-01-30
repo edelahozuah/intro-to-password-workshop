@@ -17,12 +17,12 @@
 
 ```mermaid
 flowchart LR
-    A[Atacante] -->|SSH Login| B[SSH Server]
-    B -->|Fallo| C[/var/log/auth.log]
-    C -->|Monitoreo| D[Fail2Ban]
-    D -->|Regex Match| E{¿maxretry?}
-    E -->|Sí| F[iptables -A INPUT -s IP -j DROP]
-    E -->|No| G[Continuar monitoreando]
+    A["Atacante"] -->|SSH Login| B["SSH Server"]
+    B -->|Fallo| C["/var/log/auth.log"]
+    C -->|Monitoreo| D["Fail2Ban"]
+    D -->|Regex Match| E{"¿maxretry?"}
+    E -->|Sí| F["iptables -A INPUT -s IP -j DROP"]
+    E -->|No| G["Continuar monitoreando"]
     F -->|Bloqueado| A
 ```
 
