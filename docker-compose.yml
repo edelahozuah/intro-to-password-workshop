@@ -50,39 +50,6 @@ services:
     networks:
       - lab-network
 
-  # DVWA para ataques web
-  dvwa:
-    # Nota: ghcr.io/digininja/dvwa es multi-arch (x86 + ARM)
-    image: ghcr.io/digininja/dvwa:latest
-    container_name: workshop_dvwa
-    hostname: dvwa
-    environment:
-      - MYSQL_HOST=dvwa-db
-      - MYSQL_DATABASE=dvwa
-      - MYSQL_USER=dvwa
-      - MYSQL_PASSWORD=dvwa
-    ports:
-      - "8080:80"
-    depends_on:
-      - dvwa-db
-    networks:
-      - lab-network
-
-  # Base de datos para DVWA
-  dvwa-db:
-    image: mariadb:10.11
-    container_name: workshop_dvwa_db
-    hostname: dvwa-db
-    environment:
-      - MYSQL_ROOT_PASSWORD=rootpass
-      - MYSQL_DATABASE=dvwa
-      - MYSQL_USER=dvwa
-      - MYSQL_PASSWORD=dvwa
-    volumes:
-      - dvwa-data:/var/lib/mysql
-    networks:
-      - lab-network
-
   # API vulnerable para credential stuffing
   vulnerable-api:
     build: ./vulnerable-api
@@ -141,8 +108,3 @@ networks:
   lab-network:
     driver: bridge
     name: workshop_network
-
-volumes:
-  dvwa-data:
-
-

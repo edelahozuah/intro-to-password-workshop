@@ -14,7 +14,7 @@ from colorama import init, Fore, Style
 init(autoreset=True)
 
 # Configuración por defecto
-DEFAULT_TARGET = "http://dvwa/login.php"
+DEFAULT_TARGET = "http://vulnerable-api:5000/api/login"
 DEFAULT_CREDENTIALS = "leaked_credentials.txt"
 DEFAULT_SUCCESS = "Welcome"
 DEFAULT_FAIL = "Login failed"

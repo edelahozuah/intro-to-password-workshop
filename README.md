@@ -59,8 +59,8 @@ docker-compose exec attacker /bin/bash
 ssh testuser@ssh-target -p 2222
 # Contraseña: password123
 
-# Probar DVWA
-curl http://dvwa
+# Probar API vulnerable
+curl http://vulnerable-api:5000/
 
 # Verificar herramientas instaladas
 hashcat --version

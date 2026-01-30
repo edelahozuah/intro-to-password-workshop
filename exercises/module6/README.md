@@ -101,9 +101,6 @@ cut -d: -f1 leaked_credentials.txt > users.txt
 cut -d: -f2 leaked_credentials.txt > passwords.txt
 ```
 
-> [!WARNING]
-> **DVWA tiene CSRF tokens** que impiden ataques simples con Hydra. Usaremos **vulnerable-api** para este ejercicio.
-
 #### Ataque con FFUF contra vulnerable-api
 
 ```bash

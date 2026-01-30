@@ -16,7 +16,7 @@ else
 fi
 
 # 2. Verificar contenedores esenciales
-REQUIRED_CONTAINERS=("workshop_attacker" "workshop_ssh_target" "workshop_dvwa" "workshop_vulnerable_api" "workshop_tor_proxy")
+REQUIRED_CONTAINERS=("workshop_attacker" "workshop_ssh" "workshop_api" "workshop_tor")
 echo -e "\n[*] Verificando contenedores..."
 
 # Obtener lista de contenedores corriendo
@@ -42,16 +42,13 @@ fi
 # 3. Verificar acceso a servicios básicos desde el host
 echo -e "\n[*] Verificando conectividad a servicios..."
 
-# Vulnerable API (Port 5000?) - Wait, docker-compose exposes it on 5000:5000 usually
-if curl -s -o /dev/null -w "%{http_code}" http://localhost:5000/api/status | grep -q "200\|404"; then
+# Vulnerable API (Port 5000)
+if curl -s -o /dev/null -w "%{http_code}" http://localhost:5000/ | grep -q "200\|404"; then
      echo -e "${GREEN}[✓] Vulnerable API (Port 5000): Accesible${NC}"
 else
      echo -e "${RED}[!] Vulnerable API (Port 5000): No responde${NC}"
      ALL_OK=false
 fi
-
-# DVWA via localhost? (Depends on mapping) usually 8088 or similar in previous turns I saw 8088? 
-# Check docker-compose.yml to be sure. I'll stick to a generic check that warns.
 
 # 4. Verificar archivos críticos
 echo -e "\n[*] Verificando archivos del taller..."

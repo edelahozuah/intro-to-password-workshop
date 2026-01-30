@@ -15,12 +15,12 @@
 
 ```mermaid
 flowchart TD
-    A["🦹 Attacker (Hydra)"] -->|"SSH (port 22)"| B["🖥️ SSH Target"]
-    A -->|"HTTP POST"| C["🌐 DVWA Web"]
+    A["🦹 Attacker (Hydra/FFUF)"] -->|"SSH (port 22)"| B["🖥️ SSH Target"]
+    A -->|"HTTP POST"| C["🌐 Vulnerable API"]
     
     subgraph "Intrusion Detection"
         B -->|Logs| D["📄 auth.log"]
-        C -->|Logs| E["📄 access.log"]
+        C -->|Logs| E["📄 app.log"]
         D -.-> F["👮 Fail2Ban"]
         F -->|Block IP| A
     end
@@ -87,8 +87,8 @@ Incluye: ssh, ftp, http-get, http-post-form, smb, rdp, mysql, postgres, etc.
 Servicios vulnerables corriendo en Docker:
 
 ```
-ssh-target:2222    → Usuario: testuser, Password: password123
-dvwa:80            → Múltiples usuarios con passwords débiles
+ssh-target:2222     → Usuario: testuser, Password: password123
+vulnerable-api:5000 → API REST para login (POST /api/login)
 ```
 
 > [!IMPORTANT]
@@ -97,12 +97,11 @@ dvwa:80            → Múltiples usuarios con passwords débiles
 > | Servicio | Rate Limiting | Account Lockout | Fail2Ban | CAPTCHA |
 > |:---------|:-------------:|:---------------:|:--------:|:-------:|
 > | **ssh-target** | ❌ No | ❌ No | ❌ No | N/A |
-> | **dvwa** | ❌ No | ❌ No | ❌ No | ❌ No |
 > | **vulnerable-api** | ✅ **Sí** (5 intentos) | ❌ No | N/A | ❌ No |
 >
 > **Explicación**:
-> - `ssh-target` y `dvwa` son **intencionalmente vulnerables** para que puedas practicar ataques sin restricciones.
-> - `vulnerable-api` (Módulos 6 y 9) **sí tiene Rate Limiting**: tras 5 intentos fallidos desde la misma IP, te bloqueará 60 segundos. Esto es para que practiques **evasión con rotación de IPs** en el Módulo 9.
+> - `ssh-target` es **intencionalmente vulnerable** para practicar ataques sin restricciones.
+> - `vulnerable-api` **sí tiene Rate Limiting**: tras 5 intentos fallidos desde la misma IP, te bloqueará 60 segundos. Esto es para que practiques **evasión con rotación de IPs** en el Módulo 9.
 > - Las secciones de "Mitigaciones" más abajo son **teóricas/educativas**, no están activas en estos contenedores.
 
 ### Ejercicio 1: SSH Brute Force 🟢
@@ -149,51 +148,9 @@ Esto indica:
 
 ---
 
-### Ejercicio 2: HTTP POST Form (DVWA) 🟡
+### Ejercicio 2: Ataque Web con FFUF (API Vulnerable) 🟡
 
-DVWA tiene un formulario de login en `/login.php`.
-
-> [!WARNING]
-> **Limitación técnica**: DVWA usa **CSRF tokens** en su formulario de login, lo que hace que Hydra no funcione correctamente (reporta falsos positivos). 
-> 
-> En este ejercicio aprenderás por qué ocurre esto y usaremos **FFUF** como alternativa.
-
-#### Paso 1: Analizar el formulario
-
-```bash
-# Inspeccionar con curl
-curl -s http://dvwa/login.php | grep -E "(name=|token)"
-
-# Verás algo como:
-# <input type="hidden" name="user_token" value="abc123..." />
-# Este token cambia en cada petición, lo que rompe ataques simples de Hydra
-```
-
-#### Paso 2: Entender por qué Hydra falla
-
-```bash
-# Este comando NO funcionará correctamente:
-hydra -l admin -P /wordlists/rockyou-subset.txt dvwa http-post-form \
-  "/login.php:username=^USER^&password=^PASS^&Login=Login:Login failed" -t 1
-
-# Hydra reportará "éxitos" falsos porque sin el token CSRF,
-# DVWA no muestra "Login failed" sino otro mensaje de error
-```
-
-**Lección**: Los formularios web modernos con CSRF protection requieren herramientas más sofisticadas o scripts personalizados.
-
-**Credenciales por defecto en DVWA** (para testing manual):
-- admin/password
-- gordonb/abc123
-- 1337/charley
-- pablo/letmein
-- smithy/password
-
----
-
-### Ejercicio 2b: Ataque Web con FFUF (API Vulnerable) 🚀
-
-Como DVWA tiene CSRF, usaremos la **vulnerable-api** que es una API REST sin protección CSRF.
+La **vulnerable-api** es una API REST sin protección CSRF, ideal para practicar ataques de fuerza bruta web.
 
 **Ventajas de FFUF**:
 - Escrito en Go (muy rápido)
@@ -418,7 +375,7 @@ chmod +x password_spray.sh
 ## 🛡️ Mitigaciones y Defensas
 
 > [!NOTE]
-> **Sección Educativa**: Las siguientes mitigaciones se explican a nivel teórico. **No están activas** en los contenedores `ssh-target` ni `dvwa` de este laboratorio. Sirven para que entiendas cómo proteger sistemas reales.
+> **Sección Educativa**: Las siguientes mitigaciones se explican a nivel teórico. **No están activas** en el contenedor `ssh-target` de este laboratorio. Sirven para que entiendas cómo proteger sistemas reales.
 
 ### Fail2Ban
 
@@ -565,7 +522,7 @@ ncrack -u testuser -P /wordlists/rockyou-subset.txt ssh://ssh-target:2222
 Has completado este módulo cuando:
 
 - [ ] Crackeaste exitosamente SSH con Hydra
-- [ ] Atacaste el formulario DVWA
+- [ ] Atacaste la API vulnerable con FFUF
 - [ ] Comprendiste diferencias offline vs online
 - [ ] Identificaste al menos 3 mitigaciones
 - [ ] Reflexionaste sobre aspectos éticos y legales
