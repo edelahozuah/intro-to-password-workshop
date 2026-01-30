@@ -5,7 +5,7 @@
 ## 🎯 Objetivos de Aprendizaje
 
 - Comprender cómo funcionan las reglas de mutación
-- Aplicar reglas predefinidas de Hashcat y John
+- Aplicar reglas predefinidas de **Hashcat**
 - Crear reglas personalizadas
 - Optimizar wordlists con transformaciones eficientes
 
@@ -58,18 +58,7 @@ hashcat -m [hash_type] -a 0 hashes.txt wordlist.txt -r rules.rule
 /opt/rules/hob064.rule                         # De Hob0Rules (análisis de brechas)
 ```
 
-### John the Ripper Rules
 
-```bash
-# Aplicar reglas
-john --wordlist=wordlist.txt --rules=All hashes.txt
-
-# Reglas predefinidas
---rules=Single    # Modo single
---rules=Wordlist  # Wordlist mode
---rules=Extra     # Extra mutations
---rules=All       # Todas las reglas
-```
 
 ---
 
@@ -163,21 +152,6 @@ EOF
 
 # Aplicar reglas personalizadas
 hashcat -m 1400 -a 0 policy_hashes.txt base_wordlist.txt -r custom_rules.rule
-```
-
----
-
-### Ejercicio 4: John the Ripper con reglas 🌟
-
-```bash
-# Convertir hashes a formato John (si es necesario)
-# Para este ejercicio, John puede leer hashes raw SHA-256
-
-# Aplicar todas las reglas de John
-john --format=raw-sha256 --wordlist=base_wordlist.txt --rules=All policy_hashes.txt
-
-# Ver crackeados
-john --show --format=raw-sha256 policy_hashes.txt
 ```
 
 ---
@@ -318,9 +292,7 @@ chmod +x rule_tester.sh
 
 ## 📚 Recursos Adicionales
 
-- [Hashcat Rule-Based Attack](https://hashcat.net/wiki/doku.php?id=rule_based_attack)
-- [OneRuleToRuleThemAll GitHub](https://github.com/NotSoSecure/password_cracking_rules)
-- [John the Ripper Rules Syntax](https://www.openwall.com/john/doc/RULES.shtml)
+- [Hashcat Rule-Based Attack](https://hashcat.net/wiki/doku.php?id=rule_based_attack)\n- [OneRuleToRuleThemAll GitHub](https://github.com/NotSoSecure/password_cracking_rules)
 
 ---
 

@@ -46,8 +46,6 @@ Los humanos somos **predecibles** al crear contraseñas:
 9. trustno1
 10. dragon
 
-## 🛠️ Herramientas
-
 ## 🛠️ Herramientas y Diccionarios
 
 ### 📦 ¿Qué incluye el entorno?
@@ -142,18 +140,6 @@ ls -lh
 ### Ejercicio 1: Usar rockyou.txt subset 🟢
 
 El ejercicio incluye un subset de 100,000 contraseñas más comunes.
-
-#### Con John the Ripper
-
-```bash
-# Ataque básico con wordlist
-john --format=raw-sha256 --wordlist=/wordlists/rockyou-subset.txt hashes_common.txt
-
-# Ver progreso
-john --show --format=raw-sha256 hashes_common.txt
-```
-
-#### Con Hashcat
 
 ```bash
 # Modo diccionario (-a 0)
@@ -335,9 +321,7 @@ time hashcat -m 1400 -a 0 hashes_common.txt /wordlists/rockyou-subset.txt
 
 ### Especializados
 
-- `fasttrack.txt` - Contraseñas de equipos de pentesting (Kali)
-- `john.txt` - Wordlist por defecto de John the Ripper
-- SecLists específicos:
+- `fasttrack.txt` - Contraseñas de equipos de pentesting (Kali)\n- SecLists específicos:
   - `spanish-top201.txt` - Español
   - `finnish_passwd.txt` - Finés
   - `dutch_common_wordlist.txt` - Holandés

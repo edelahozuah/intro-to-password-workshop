@@ -161,7 +161,7 @@ A diferencia de los SMS/TOTP, WebAuthn vincula criptográficamente el login con 
 
 | Módulo | Técnicas Aprendidas |
 |--------|---------------------|
-| **1** | Cracking offline, fuerza bruta, John/Hashcat |
+| **1** | Cracking offline, fuerza bruta, Hashcat |
 | **2** | Diccionarios (rockyou, SecLists, Weakpass) |
 | **3** | CUPP, perfilado OSINT, diccionarios personalizados |
 | **4** | Reglas de mutación, OneRuleToRuleThemAll |

@@ -70,9 +70,5 @@ wc -l cracked_*.txt
 ## 💡 Tips
 *   Usa `--show` en hashcat para ver las contraseñas ya crackeadas.
 *   Si hashcat se queja de la temperatura o driver en tu local (al no tener GPU dedicada en Docker), usa `--force` o `-O` (Optimized kernels) si es necesario, aunque en CPU será más lento.
-*   En Kali/Docker CPU-only, `john` también es una buena alternativa:
-    ```bash
-    john --format=Raw-MD5 --wordlist=/wordlists/seclists/rockyou.txt raw-md5.hashes.txt
-    ```
 
 ¡Suerte, auditor! 🕵️‍♂️

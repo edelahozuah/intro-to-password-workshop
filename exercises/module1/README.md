@@ -5,7 +5,7 @@
 ## 🎯 Objetivos de Aprendizaje
 
 - Comprender cómo se almacenan las contraseñas (hashing)
-- Utilizar John the Ripper y Hashcat para fuerza bruta
+- Utilizar **Hashcat** para ataques de fuerza bruta
 - Evaluar la complejidad temporal de diferentes ataques
 - Reconocer la importancia de contraseñas fuertes
 
@@ -72,20 +72,7 @@ nth --text "5f4dcc3b5aa765d61d8327deb882cf99"
 nth -f hashes.txt
 ```
 
-### John the Ripper
 
-```bash
-# Sintaxis básica
-john [opciones] archivo_hashes
-
-# Modos
---incremental=Digits    # Solo dígitos
---incremental=Alpha     # Solo letras
---incremental=Alnum     # Alfanumérico
-
-# Ver contraseñas crackeadas
-john --show archivo_hashes
-```
 
 ### Hashcat
 
@@ -133,16 +120,6 @@ ls -lh
 ### Nivel 1: PINs de 4 dígitos 🟢
 
 **Objetivo**: Crackear 10 hashes MD5 de PINs numéricos (0000-9999)
-
-#### Con John the Ripper
-
-```bash
-# Ejecutar cracking
-john --format=raw-md5 --incremental=Digits hashes_level1.txt
-
-# Ver resultados
-john --show --format=raw-md5 hashes_level1.txt
-```
 
 #### Con Hashcat
 
@@ -221,9 +198,9 @@ Si Hashcat reporta **1,000,000 H/s** (hashes por segundo) para MD5:
 
 ```bash
 # Ver cuántos hashes has crackeado
-john --show hashes_level1.txt | wc -l
-john --show hashes_level2.txt | wc -l
-john --show hashes_level3.txt | wc -l
+hashcat -m 0 hashes_level1.txt --show | wc -l
+hashcat -m 0 hashes_level2.txt --show | wc -l
+hashcat -m 100 hashes_level3.txt --show | wc -l
 ```
 
 **Objetivo mínimo**:
@@ -244,7 +221,7 @@ john --show hashes_level3.txt | wc -l
 ## 📚 Recursos Adicionales
 
 - [Hashcat Wiki - Mask Attack](https://hashcat.net/wiki/doku.php?id=mask_attack)
-- [John the Ripper Modes](https://www.openwall.com/john/doc/MODES.shtml)
+- [Hashcat Example Hashes](https://hashcat.net/wiki/doku.php?id=example_hashes)
 - [Password Hashing Competition](https://password-hashing.net/)
 
 ## ✅ Criterios de Completitud
