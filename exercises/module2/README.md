@@ -48,48 +48,42 @@ Los humanos somos **predecibles** al crear contraseñas:
 
 ## 🛠️ Herramientas
 
-### Wordlists incluidas en Kali
+## 🛠️ Herramientas y Diccionarios
 
-```bash
-# Ubicación estándar
-/usr/share/wordlists/
+### 📦 ¿Qué incluye el entorno?
 
-# Extraer rockyou.txt
-gunzip /usr/share/wordlists/rockyou.txt.gz
+El contenedor `attacker` ya viene preconfigurado con las mejores colecciones de diccionarios. No necesitas descargar nada de Internet, ya están en estas rutas locales del contenedor:
 
-# Ver primeras líneas
-head -20 /usr/share/wordlists/rockyou.txt
+1.  **RockYou**: `/wordlists/rockyou.txt` (El clásico imprescindible).
+    *   *Nota: En algunos entornos puede estar comprimido en `/usr/share/wordlists/`.*
+2.  **SecLists**: `/opt/SecLists/`
+    *   La colección estándar de la industria.
+    *   Passwords: `/opt/SecLists/Passwords/`
+    *   Usernames: `/opt/SecLists/Usernames/`
+3.  **Palabrario**: `/opt/palabrario/`
+    *   Diccionarios específicos en **Español**.
 
-# Contar total de contraseñas
-wc -l /usr/share/wordlists/rockyou.txt
-```
+### 📂 Cargar tus propios diccionarios (Custom Volume)
 
-### SecLists - El estándar actual
+Hemos habilitado un volumen especial para que puedas usar tus propios ficheros `.txt` sin reconstruir el contenedor.
 
-**SecLists** es la colección más completa y actualizada de listas para pentesting.
+1.  **En tu máquina (Host)**:
+    Deja cualquier fichero en la carpeta `custom_wordlists/` que está en la raíz del proyecto.
+    
+    ```bash
+    # Ejemplo: Crear un diccionario personalizado rápido
+    echo "admin123" > custom_wordlists/mi_diccionario.txt
+    ```
 
-**¿Por qué SecLists?**
-- ✅ Mantenido activamente (actualizado en 2024)
-- ✅ Categorizado por tipo de ataque
-- ✅ Incluye listas especializadas
-- ✅ Estándar de la industria
+2.  **En el contenedor (Attacker)**:
+    El fichero aparecerá automáticamente en `/custom_wordlists/`.
 
-```bash
-# Clonar repositorio (recomendado)
-git clone https://github.com/danielmiessler/SecLists.git /opt/SecLists
+    ```bash
+    # Verificar desde dentro del contenedor
+    ls -l /custom_wordlists/
+    ```
 
-# O instalar en Kali (viene preinstalado)
-apt install seclists
-ls /usr/share/seclists/Passwords/
-
-# Estructura de Passwords/
-ls /opt/SecLists/Passwords/
-# Common-Credentials/     - Contraseñas comunes por servicio
-# Leaked-Databases/       - De filtraciones reales
-# Default-Credentials/   - Credenciales por defecto
-# Keyboard-Walks/        - Patrones de teclado
-# Honeypot-Captures/     - Capturadas de honeypots
-```
+Este método es ideal para cargar diccionarios generados por herramientas externas (como `cupp`) o descargados de otras fuentes.
 
 **Wordlists destacadas**:
 
