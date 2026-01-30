@@ -131,34 +131,37 @@ hydra -l testuser -P /wordlists/rockyou-subset.txt ssh://ssh-target:2222 -t 1 -v
 
 DVWA tiene un formulario de login en `/login.php`.
 
+> [!WARNING]
+> **Limitación técnica**: DVWA usa **CSRF tokens** en su formulario de login, lo que hace que Hydra no funcione correctamente (reporta falsos positivos). 
+> 
+> En este ejercicio aprenderás por qué ocurre esto y usaremos **FFUF** como alternativa.
+
 #### Paso 1: Analizar el formulario
 
 ```bash
 # Inspeccionar con curl
-curl http://dvwa/login.php
+curl -s http://dvwa/login.php | grep -E "(name=|token)"
 
-# Identificar:
-# - Campos del form: username, password
-# - URL de acción: login.php
-# - Mensaje de error: "Login failed"
+# Verás algo como:
+# <input type="hidden" name="user_token" value="abc123..." />
+# Este token cambia en cada petición, lo que rompe ataques simples de Hydra
 ```
 
-#### Paso 2: Construir comando Hydra
+#### Paso 2: Entender por qué Hydra falla
 
 ```bash
-# Sintaxis para HTTP POST
+# Este comando NO funcionará correctamente:
 hydra -l admin -P /wordlists/rockyou-subset.txt dvwa http-post-form \
-  "/login.php:username=^USER^&password=^PASS^&Login=Login:Login failed" -t 4
+  "/login.php:username=^USER^&password=^PASS^&Login=Login:Login failed" -t 1
+
+# Hydra reportará "éxitos" falsos porque sin el token CSRF,
+# DVWA no muestra "Login failed" sino otro mensaje de error
 ```
 
-Explicación:
-- `^USER^` → Reemplazado por usuario
-- `^PASS^` → Reemplazado por password
-- `:Login failed` → String que indica fallo
+**Lección**: Los formularios web modernos con CSRF protection requieren herramientas más sofisticadas o scripts personalizados.
 
-**Credenciales por defecto en DVWA**:
+**Credenciales por defecto en DVWA** (para testing manual):
 - admin/password
-- admin/admin
 - gordonb/abc123
 - 1337/charley
 - pablo/letmein
