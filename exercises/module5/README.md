@@ -91,6 +91,20 @@ ssh-target:2222    → Usuario: testuser, Password: password123
 dvwa:80            → Múltiples usuarios con passwords débiles
 ```
 
+> [!IMPORTANT]
+> ### 🛡️ ¿Qué defensas están implementadas en NUESTRO laboratorio?
+> 
+> | Servicio | Rate Limiting | Account Lockout | Fail2Ban | CAPTCHA |
+> |:---------|:-------------:|:---------------:|:--------:|:-------:|
+> | **ssh-target** | ❌ No | ❌ No | ❌ No | N/A |
+> | **dvwa** | ❌ No | ❌ No | ❌ No | ❌ No |
+> | **vulnerable-api** | ✅ **Sí** (5 intentos) | ❌ No | N/A | ❌ No |
+>
+> **Explicación**:
+> - `ssh-target` y `dvwa` son **intencionalmente vulnerables** para que puedas practicar ataques sin restricciones.
+> - `vulnerable-api` (Módulos 6 y 9) **sí tiene Rate Limiting**: tras 5 intentos fallidos desde la misma IP, te bloqueará 60 segundos. Esto es para que practiques **evasión con rotación de IPs** en el Módulo 9.
+> - Las secciones de "Mitigaciones" más abajo son **teóricas/educativas**, no están activas en estos contenedores.
+
 ### Ejercicio 1: SSH Brute Force 🟢
 
 ```bash
@@ -332,6 +346,9 @@ chmod +x password_spray.sh
    ```
 
 ## 🛡️ Mitigaciones y Defensas
+
+> [!NOTE]
+> **Sección Educativa**: Las siguientes mitigaciones se explican a nivel teórico. **No están activas** en los contenedores `ssh-target` ni `dvwa` de este laboratorio. Sirven para que entiendas cómo proteger sistemas reales.
 
 ### Fail2Ban
 
