@@ -11,18 +11,23 @@
 ### Arquitectura de Evasión
 
 ```mermaid
-flowchart LR
-    A["🦹 Attacker"] -->|Direct Request| B["❌ Firewall/WAF"]
-    B -->|Block IP| A
-    
-    A -->|SOCKS5| C["🧅 Tor Proxy"]
-    C -->|Circuit 1 (IP A)| D["✅ Vulnerable API"]
-    C -->|Circuit 2 (IP B)| D
-    C -->|Circuit 3 (IP C)| D
-    
-    style A fill:#f9f,stroke:#333
-    style D fill:#bbf,stroke:#333
-    style C fill:#bfb,stroke:#333
+    flowchart LR
+        A["🦹 Attacker"]
+        P["🧅 Tor/Proxy"]
+        T["✅ Vulnerable API<br/>(with Rate Limit)"]
+        
+        %% Direct Attack (Blocked)
+        A -->|Direct Request (IP X)| T
+        T -.->|⛔ 429 Blocked| A
+        
+        %% Proxy Attack (Bypass)
+        A -->|SOCKS5| P
+        P -->|Request (IP Y)| T
+        P -->|Request (IP Z)| T
+        
+        style A fill:#f9f,stroke:#333
+        style T fill:#bbf,stroke:#333
+        style P fill:#bfb,stroke:#333
 ```
 
 ## 📖 Teoría
