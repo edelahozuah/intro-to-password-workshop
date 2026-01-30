@@ -52,7 +52,8 @@ services:
 
   # DVWA para ataques web
   dvwa:
-    image: vulnerables/web-dvwa:latest
+    # Nota: ghcr.io/digininja/dvwa es multi-arch (x86 + ARM)
+    image: ghcr.io/digininja/dvwa:latest
     container_name: workshop_dvwa
     hostname: dvwa
     environment:
@@ -98,15 +99,13 @@ services:
       - ./vulnerable-api:/app
 
   # Proxy Tor para rotación de IPs (Módulo 9)
+  # Nota: peterdavehello/tor-socks-proxy es multi-arch (x86 + ARM)
   tor-proxy:
-    image: dperson/torproxy
+    image: peterdavehello/tor-socks-proxy:latest
     container_name: workshop_tor
     hostname: tor-proxy
     ports:
-      - "9050:9050"
-      - "8118:8118"
-    environment:
-      - TOR_NewCircuitPeriod=10 # Forzar cambio de circuito frecuentemente
+      - "9050:9050" # SOCKS5 proxy (sin 8118, usa 9050 directamente)
     networks:
       - lab-network
 

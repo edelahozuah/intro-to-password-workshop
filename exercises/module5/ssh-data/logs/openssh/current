@@ -180,3 +180,8 @@
 2026-01-30 09:02:06.501182046  drop connection #2 from [172.19.0.6]:54678 on [172.19.0.2]:2222 penalty: failed authentication
 2026-01-30 09:02:06.503188963  drop connection #0 from [172.19.0.6]:54690 on [172.19.0.2]:2222 penalty: failed authentication
 2026-01-30 09:02:06.521065963  drop connection #0 from [172.19.0.6]:54718 on [172.19.0.2]:2222 penalty: failed authentication
+2026-01-30 09:11:36.535312587  Received signal 15; terminating.
+2026-01-30 09:22:27.214011625  Server listening on 0.0.0.0 port 2222.
+2026-01-30 09:22:27.214064291  Server listening on :: port 2222.
+2026-01-30 09:22:28.197752708  Connection to localhost (::1) 2222 port [tcp/*] succeeded!
+2026-01-30 09:22:28.202462333  Connection closed by ::1 port 55680
