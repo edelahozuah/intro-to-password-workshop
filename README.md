@@ -111,7 +111,6 @@ password-security-workshop/
 ├── wordlists/                  # Diccionarios de contraseñas
 ├── scripts/                    # Scripts de soporte
 ├── solutions/                  # Soluciones de ejercicios
-├── slides/                     # Material de presentación
 └── vulnerable-api/             # API vulnerable para prácticas (Flask)
 ```
 
@@ -120,7 +119,7 @@ password-security-workshop/
 ### Para Instructores
 
 1. Revisa las [soluciones](solutions/) antes de la sesión
-2. Presenta cada módulo con las [slides](slides/)
+2. **Ejecuta las demos** en el orden propuesto en `/exercises`
 3. Deja que los estudiantes trabajen en los ejercicios
 4. Usa los scripts de verificación para comprobar el progreso
 
