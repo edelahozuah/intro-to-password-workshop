@@ -178,7 +178,9 @@ echo "Carlos\nGarcia\nTechCorp\nRealMadrid" > /tmp/base.txt
 
 # Generar permutaciones con configuración específica
 # -len 8 16: longitud 8 a 16
-# ... (resto del ejemplo anterior)
+# --head: Prefijos comunes
+python3 pydictor.py -base /tmp/base.txt -len 8 16 -o /exercises/module3/pydictor_words.txt
+```
 
 ---
 
@@ -232,9 +234,6 @@ sort uah_context.txt | uniq -c | sort -nr | head -n 20
 ```
 
 **Reflexión**: ¿Cuántas de estas palabras podrían ser parte de una contraseña débil? (ej: `Estudios2024`, `Investigacion!`, `Futuro_UAH`).
-# --head: Prefijos comunes
-python3 pydictor.py -base /tmp/base.txt -len 8 16 -o /exercises/module3/pydictor_words.txt
-```
 
 ---
 
