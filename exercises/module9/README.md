@@ -6,14 +6,14 @@
 
 -   Comprender las técnicas de defensa: **Rate Limiting** y **Bloqueo de IPs**.
 -   Aprender cómo los atacantes evaden estas defensas mediante **Rotación de IPs**.
--   Implementar scripts de ataque que utilicen **Proxies (SOCKS5/HTTP)** y la red **Tor**.
+-   Implementar scripts que utilicen **Redes de Rotación** (Tor, AWS Gateway, Proxies Residenciales).
 
 ### Arquitectura de Evasión
 
 ```mermaid
     flowchart LR
         A["🦹 Attacker"]
-        P["🧅 Tor/Proxy"]
+        LB["🔄 IP Rotation<br/>Service"]
         T["✅ Vulnerable API<br/>Rate Limited"]
         
         %% Direct Attack (Blocked)
@@ -21,13 +21,14 @@
         T -.->|⛔ 429 Blocked| A
         
         %% Proxy Attack (Bypass)
-        A -->|SOCKS5| P
-        P -->|Request IP Y| T
-        P -->|Request IP Z| T
+        A -->|Request Loop| LB
+        LB -->|Tor Exit Node| T
+        LB -->|AWS Gateway| T
+        LB -->|Residential Proxy| T
         
         style A fill:#f9f,stroke:#333
         style T fill:#bbf,stroke:#333
-        style P fill:#bfb,stroke:#333
+        style LB fill:#bfb,stroke:#333
 ```
 
 ## 📖 Teoría
